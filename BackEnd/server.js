@@ -1,5 +1,7 @@
 
 /***************************project run from this file****************/
+
+require('./config/database');
 const express = require('express');
 const path = require('path');
 const app=express();
@@ -8,12 +10,12 @@ app.use(express.json());
 
 
 // used for proxy url
-app.use(express.static(path.join(__dirname,'..','frontEnd','build')));
-app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,'..','frontEnd','build','index.html'));
-});
+// app.use(express.static(path.join(__dirname,'..','frontEnd','build')));
+// app.get('*',(req,res)=>{
+//     res.sendFile(path.join(__dirname,'..','frontEnd','build','index.html'));
+// });
 
-// reqired registeration[controller] to perform registeration operation
+// required registeration[controller] to perform registeration operation
 app.use(require('./controller/registeration'));
 
 

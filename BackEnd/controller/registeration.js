@@ -2,6 +2,7 @@
 /************** Register controller *******************/
 
 const {Router}=require('express');
+const btoa = require('btoa');
 
 const router=Router();
 
@@ -13,7 +14,10 @@ const validator = require('validator');
 router.post('/storeData',(req,res)=>{
 
         // get all user_details from request body
-        const {uname,phone,email_id,serial_key,password,cpassword}=req.body;
+        const {uname,phone,email_id,serial_key,password,cpassword}=req.body.register_details;
+
+       
+
 
         //initialize empty to errors object
         const errors={};
@@ -22,7 +26,7 @@ router.post('/storeData',(req,res)=>{
         errors.name_error=validate_username(uname);
 
         // validation for contact
-        errors.phone_error=validate_contact(phone);
+        errors.phone_error=req.body.intlTelInput_error;
 
         // validation for email
         errors.email_error=validate_email(email_id);
@@ -35,15 +39,30 @@ router.post('/storeData',(req,res)=>{
 
         errors.cpass_error=validate_confirm_password(cpassword,password);
 
-        res.json((validator.isEmpty(errors.name_error) && 
-        validator.isEmpty(errors.phone_error) &&
-        validator.isEmpty(errors.email_error) && 
-        validator.isEmpty(errors.serial_key_error) && 
-        validator.isEmpty(errors.pass_error) && 
-        validator.isEmpty(errors.cpass_error) )? "" : errors);
+        if(checkallvalidation(errors))
+        {
+            console.log(`base64 encoding activation_id : ${btoa(email_id)}`);
+            console.log(`base64 encoding password : ${btoa(password)}`);
+            
+            res.json({success:"testing"});
+        }
+        else
+        {
+            res.json({validation_errors:errors});
+        }
+        
 });
 
 
+// check all validations 
+const checkallvalidation=(props)=>{
+    let {name_error,phone_error,email_error,serial_key_error,pass_error,cpass_error}=props;
+
+    return (validator.isEmpty(name_error) && validator.isEmpty(phone_error) && validator.isEmpty(email_error)
+    && validator.isEmpty(serial_key_error) && validator.isEmpty(pass_error) && validator.isEmpty(cpass_error)
+    )? true : false;
+
+}
 //validation for full name
 const validate_username = (props) =>{
 
@@ -95,19 +114,6 @@ const validate_username = (props) =>{
     
 }
     
-//validation for contact-number
-const validate_contact = (props)=>{
-        if(validator.isEmpty(props))
-        {
-            return "required";
-        }
-        else
-        {
-           return "true";
-            
-        }
-    }
-
 
 
 

@@ -6,12 +6,6 @@ import {React,colortheme,MuiThemeProvider,useState,useEffect,TextField,
         from './Header'
 
 
-
-
-
-
-
-
 const RegisterForm = () => {
 
 
@@ -38,6 +32,8 @@ const RegisterForm = () => {
 
     // // Destructing of objects
     const {name_error,phone_error,serial_key_error,email_error,pass_error,cpass_error}=errors;
+
+  
 
     // show tooltip 
     const [open, setOpen] = useState(false);
@@ -67,6 +63,12 @@ const RegisterForm = () => {
     },[]);
 
 
+    //validate contact_number based on countrycode
+    const validate_contact = () =>
+    {
+        return plugin_for_contact(document.querySelector("#phone"));
+
+    }
 
     // change input fields based on [onchange ]
     const inputEvent = (event) =>{
@@ -85,19 +87,17 @@ const RegisterForm = () => {
     const submit =  (event) =>{
 
         event.preventDefault();
-
-        axios.post('/storeData',register_details)
+        const intlTelInput_error=validate_contact();
+        axios.post('/storeData',{register_details,intlTelInput_error})
         .then(response=>{
-                if(response.data)
-                {
-                    let {name_error,phone_error,serial_key_error,email_error,pass_error,cpass_error}=response.data;
 
-                    if(phone_error === "true")
-                    {
-                        // validate contact number based on country code
-                        phone_error=plugin_for_contact(document.querySelector("#phone"));
-                    }
-                   
+                const {validation_errors,success}=response.data;
+
+                // display errors if errors occured
+                if(validation_errors)
+                {
+                    let {name_error,phone_error,serial_key_error,email_error,pass_error,cpass_error}=validation_errors;
+
                     // display validation errors
                     setErrors({
                                 'name_error':name_error,
@@ -108,26 +108,24 @@ const RegisterForm = () => {
                                 'cpass_error':cpass_error
                             });
                     setOpen(true);
-
-                    // check error object is empty or not
-                   if (validator.isEmpty(name_error) && validator.isEmpty(phone_error)
-                      && validator.isEmpty(serial_key_error) && validator.isEmpty(email_error)
-                      && validator.isEmpty(pass_error) && validator.isEmpty(cpass_error) 
-                      )
-                    {
-                        setregister_details({
-                            'uname':'',
-                            'phone':'',
-                            'email_id':'',
-                            'serial_key':'',
-                            'password':'',
-                            'cpassword':''
-                        });
-                        event.target.reset();
-                        setOpen(false);
-                        console.log(`succefully validated..`);
-                    }  
                 }
+
+                // display success message
+                if(success)
+                {
+                    setregister_details({
+                        'uname':'',
+                        'phone':'',
+                        'email_id':'',
+                        'serial_key':'',
+                        'password':'',
+                        'cpassword':''
+                    });
+                    event.target.reset();
+                    setOpen(false);
+                    console.log(`succefully validated..`);
+                }
+                       
         }).catch(error=>{
             console.log(`something went wrong at ${error}`);
         });

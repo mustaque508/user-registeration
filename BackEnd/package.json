@@ -10,8 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "atob": "^2.1.2",
+    "btoa": "^1.2.1",
     "express": "^4.17.1",
-    "intl-tel-input": "^17.0.12",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.3",
     "validator": "^13.5.2"
   }
 }
