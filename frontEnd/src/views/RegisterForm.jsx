@@ -1,11 +1,11 @@
 
-/*user `register from  */
+/*******************user register form*****************/
 
 import {React,colortheme,MuiThemeProvider,useState,useEffect,TextField,
-        Button,InfoSharpIcon,Popover,OverlayTrigger,plugin_for_contact,BootstrapTooltip} 
+        Button,InfoSharpIcon,Popover,OverlayTrigger,plugin_for_contact,BootstrapTooltip,axios,validator} 
         from './Header'
 
-import axios from 'axios';
+
 
 
 
@@ -90,8 +90,15 @@ const RegisterForm = () => {
         .then(response=>{
                 if(response.data)
                 {
-                    const {name_error,phone_error,serial_key_error,email_error,pass_error,cpass_error}=response.data;
+                    let {name_error,phone_error,serial_key_error,email_error,pass_error,cpass_error}=response.data;
 
+                    if(phone_error === "true")
+                    {
+                        // validate contact number based on country code
+                        phone_error=plugin_for_contact(document.querySelector("#phone"));
+                    }
+                   
+                    // display validation errors
                     setErrors({
                                 'name_error':name_error,
                                 'phone_error':phone_error,
@@ -101,20 +108,25 @@ const RegisterForm = () => {
                                 'cpass_error':cpass_error
                             });
                     setOpen(true);
-                }
-                else
-                {
-                    setregister_details({
-                                'uname':'',
-                                'phone':'',
-                                'email_id':'',
-                                'serial_key':'',
-                                'password':'',
-                                'cpassword':''
-                            });
-                    event.target.reset();
-                    setOpen(false);
-                    alert(`succefully validated..`);
+
+                    // check error object is empty or not
+                   if (validator.isEmpty(name_error) && validator.isEmpty(phone_error)
+                      && validator.isEmpty(serial_key_error) && validator.isEmpty(email_error)
+                      && validator.isEmpty(pass_error) && validator.isEmpty(cpass_error) 
+                      )
+                    {
+                        setregister_details({
+                            'uname':'',
+                            'phone':'',
+                            'email_id':'',
+                            'serial_key':'',
+                            'password':'',
+                            'cpassword':''
+                        });
+                        event.target.reset();
+                        setOpen(false);
+                        console.log(`succefully validated..`);
+                    }  
                 }
         }).catch(error=>{
             console.log(`something went wrong at ${error}`);

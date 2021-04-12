@@ -103,19 +103,13 @@ const validate_contact = (props)=>{
         }
         else
         {
-                const res=vaildateContactByCountryCode();
-    
-            // check if contact number is valid or not
-            return (res) ? res : "";
+           return "true";
             
         }
     }
 
 
-// validate contact by countrycode
-const vaildateContactByCountryCode= ()=>{
-        return "";
-}
+
 
 
 //validation for Email

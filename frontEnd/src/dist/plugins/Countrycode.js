@@ -1,5 +1,5 @@
 
-     /**********initial plugin for contact number ********************************/
+     /**********initial plugin for contact number********************************/
 
 import {intlTelInput,util} from '../../views/Header'
 
