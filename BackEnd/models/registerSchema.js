@@ -37,8 +37,8 @@ const registerSchema=new mongoose.Schema({
 
 });
 
-//create collection
-const user_registeration=new mongoose.model("user_registeration",registerSchema);
+// //create collection
+// const user_registeration=new mongoose.model("user_registeration",registerSchema);
 
 //create document
 const createDocument= async () =>{
@@ -62,6 +62,10 @@ const createDocument= async () =>{
 
 // createDocument();
 
-// const User=mangoose.model('User',registerSchema);
+const registeration=mongoose.model('user_registeration',registerSchema); //user_registeration->be the name of collection
+
+module.exports=registeration;
+
+// const User=mongoose.model('User',registerSchema);
 
 // model.exports = User;

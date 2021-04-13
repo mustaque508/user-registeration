@@ -12,7 +12,7 @@ const RegisterForm = () => {
     // get input fields
     const [register_details, setregister_details] = useState({
         'uname':'',
-        'phone':'',
+        'contact':'',
         'email_id':'',
         'serial_key':'',
         'password':'',
@@ -59,14 +59,14 @@ const RegisterForm = () => {
 
     // display country_code based on country in phone input_field 
     useEffect(() => {
-    plugin_for_contact(document.querySelector("#phone"));
+    plugin_for_contact(document.querySelector("#contact"));
     },[]);
 
 
     //validate contact_number based on countrycode
     const validate_contact = () =>
     {
-        return plugin_for_contact(document.querySelector("#phone"));
+        return plugin_for_contact(document.querySelector("#contact"));
 
     }
 
@@ -89,46 +89,58 @@ const RegisterForm = () => {
         event.preventDefault();
         const intlTelInput_error=validate_contact();
         axios.post('/storeData',{register_details,intlTelInput_error})
-        .then(response=>{
+        .then((res)=>{
+             
+             if(res.data.errors)
+             {
+                 const {name_error,phone_error,email_error,serial_key_error,pass_error,cpass_error}=res.data.errors;
+                 setErrors({
+                    name_error,phone_error,email_error,serial_key_error,pass_error,cpass_error
+                 })
+                 setOpen(true);
+             }
+            
+        })
+        // .then(response=>{
 
-                const {validation_errors,success}=response.data;
+        //         const {validation_errors,success}=response.data;
 
-                // display errors if errors occured
-                if(validation_errors)
-                {
-                    let {name_error,phone_error,serial_key_error,email_error,pass_error,cpass_error}=validation_errors;
+        //         // display errors if errors occured
+        //         if(validation_errors)
+        //         {
+        //             let {name_error,phone_error,serial_key_error,email_error,pass_error,cpass_error}=validation_errors;
 
-                    // display validation errors
-                    setErrors({
-                                'name_error':name_error,
-                                'phone_error':phone_error,
-                                'email_error':email_error,
-                                'serial_key_error':serial_key_error,
-                                'pass_error':pass_error,
-                                'cpass_error':cpass_error
-                            });
-                    setOpen(true);
-                }
+        //             // display validation errors
+        //             setErrors({
+        //                         'name_error':name_error,
+        //                         'phone_error':phone_error,
+        //                         'email_error':email_error,
+        //                         'serial_key_error':serial_key_error,
+        //                         'pass_error':pass_error,
+        //                         'cpass_error':cpass_error
+        //                     });
+        //             setOpen(true);
+        //         }
 
-                // display success message
-                if(success)
-                {
-                    setregister_details({
-                        'uname':'',
-                        'phone':'',
-                        'email_id':'',
-                        'serial_key':'',
-                        'password':'',
-                        'cpassword':''
-                    });
-                    event.target.reset();
-                    setOpen(false);
-                    console.log(`succefully validated..`);
-                }
+        //         // display success message
+        //         if(success)
+        //         {
+        //             setregister_details({
+        //                 'uname':'',
+        //                 'phone':'',
+        //                 'email_id':'',
+        //                 'serial_key':'',
+        //                 'password':'',
+        //                 'cpassword':''
+        //             });
+        //             event.target.reset();
+        //             setOpen(false);
+        //             console.log(`succefully validated..`);
+        //         }
                        
-        }).catch(error=>{
-            console.log(`something went wrong at ${error}`);
-        });
+        // }).catch(error=>{
+        //     console.log(`something went wrong at ${error}`);
+        // });
       
     }
 
@@ -153,7 +165,7 @@ const RegisterForm = () => {
                         {/* Contact */}
                         <label htmlFor="phone" className="mb-0 mt-2">Contact</label>
                         <BootstrapTooltip title={phone_error} placement="right-end" open={open}>
-                            <TextField className="form-control mt-0"  type="tel" name="phone" id="phone" onChange={inputEvent} />
+                            <TextField className="form-control mt-0"  type="text" name="contact" id="contact" onChange={inputEvent} />
                         </BootstrapTooltip>
                         
                         {/* Email Address */}
