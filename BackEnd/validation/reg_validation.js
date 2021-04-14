@@ -53,8 +53,8 @@ const validation =(req,res,next)=>{
                             }
                             else
                             {
-                                errors.phone_error="";
-                                res.json({errors});
+                                // perform next operation which is in registeration[controller]
+                                next();
                             }
                     })
 

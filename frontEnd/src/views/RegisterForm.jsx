@@ -2,7 +2,7 @@
 /*******************user register form*****************/
 
 import {React,colortheme,MuiThemeProvider,useState,useEffect,TextField,
-        Button,InfoSharpIcon,Popover,OverlayTrigger,plugin_for_contact,BootstrapTooltip,axios,validator} 
+        Button,InfoSharpIcon,Popover,OverlayTrigger,plugin_for_contact,BootstrapTooltip,axios} 
         from './Header'
 
 
@@ -99,6 +99,20 @@ const RegisterForm = () => {
                  })
                  setOpen(true);
              }
+             else
+             {
+                setregister_details({
+                    'uname':'',
+                    'phone':'',
+                    'email_id':'',
+                    'serial_key':'',
+                    'password':'',
+                    'cpassword':''
+                });
+                event.target.reset();
+                setOpen(false);
+                console.log(res.data);
+             }
             
         })
         // .then(response=>{
@@ -122,21 +136,21 @@ const RegisterForm = () => {
         //             setOpen(true);
         //         }
 
-        //         // display success message
-        //         if(success)
-        //         {
-        //             setregister_details({
-        //                 'uname':'',
-        //                 'phone':'',
-        //                 'email_id':'',
-        //                 'serial_key':'',
-        //                 'password':'',
-        //                 'cpassword':''
-        //             });
-        //             event.target.reset();
-        //             setOpen(false);
-        //             console.log(`succefully validated..`);
-        //         }
+                // // display success message
+                // if(success)
+                // {
+                //     setregister_details({
+                //         'uname':'',
+                //         'phone':'',
+                //         'email_id':'',
+                //         'serial_key':'',
+                //         'password':'',
+                //         'cpassword':''
+                //     });
+                //     event.target.reset();
+                //     setOpen(false);
+                //     console.log(`succefully validated..`);
+                // }
                        
         // }).catch(error=>{
         //     console.log(`something went wrong at ${error}`);
