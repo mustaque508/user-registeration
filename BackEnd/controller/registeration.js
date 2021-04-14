@@ -1,11 +1,15 @@
 
 /************** Register controller *******************/
 
+require('dotenv').config();
+
 const {Router}=require('express');
 
 const router=Router();
 
 const btoa = require('btoa');
+
+const transporter=require('../config/email');
 
 const registeration=require('../models/registerSchema');
 
@@ -29,13 +33,27 @@ router.post('/storeData',validation,(req,res)=>{
        });
         
        newRegister.save((err)=>{
-                if(err)
+                if(!err)
                 {
-                        res.status(500).json({mes:"Sorry !!! internal server error"});
+                        // send activation link to user[email-id]
+                        let mailOptions={
+                             from:process.env.from,
+                             to:email_id,
+                             subject:process.env.subject,
+                             html:"<b>horay!!!! it's working</b>"
+                        };
+
+                        transporter.sendMail(mailOptions)
+                        .then(()=>{
+                                console.log(`horray!!! email sent successfully..`);
+                                res.send("testing");
+                        }).catch((err)=>{
+                                console.log(`something went wrong email not sent : ${err}`);
+                        });
                 }
                 else
                 {
-                        res.json({mes:"horay!!!!! you are successfully registered"});
+                        res.json({mes:"Sorry !!! internal server error"});
                 }
        });
 });
