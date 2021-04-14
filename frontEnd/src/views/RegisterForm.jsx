@@ -111,50 +111,11 @@ const RegisterForm = () => {
                 });
                 event.target.reset();
                 setOpen(false);
-                console.log(res.data);
+                alert(res.data);
              }
             
         })
-        // .then(response=>{
-
-        //         const {validation_errors,success}=response.data;
-
-        //         // display errors if errors occured
-        //         if(validation_errors)
-        //         {
-        //             let {name_error,phone_error,serial_key_error,email_error,pass_error,cpass_error}=validation_errors;
-
-        //             // display validation errors
-        //             setErrors({
-        //                         'name_error':name_error,
-        //                         'phone_error':phone_error,
-        //                         'email_error':email_error,
-        //                         'serial_key_error':serial_key_error,
-        //                         'pass_error':pass_error,
-        //                         'cpass_error':cpass_error
-        //                     });
-        //             setOpen(true);
-        //         }
-
-                // // display success message
-                // if(success)
-                // {
-                //     setregister_details({
-                //         'uname':'',
-                //         'phone':'',
-                //         'email_id':'',
-                //         'serial_key':'',
-                //         'password':'',
-                //         'cpassword':''
-                //     });
-                //     event.target.reset();
-                //     setOpen(false);
-                //     console.log(`succefully validated..`);
-                // }
-                       
-        // }).catch(error=>{
-        //     console.log(`something went wrong at ${error}`);
-        // });
+                      
       
     }
 

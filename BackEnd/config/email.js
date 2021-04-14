@@ -9,7 +9,7 @@ const nodemailer=require('nodemailer');
 
 let transporter=nodemailer.createTransport({
     host:process.env.host,
-    port:process.env.port,
+    port:process.env.port_no,
     secure:false,
     auth:{
         user:process.env.user,

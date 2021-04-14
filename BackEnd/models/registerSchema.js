@@ -33,6 +33,10 @@ const registerSchema=new mongoose.Schema({
     created_date:{
         type:String,
         default:() => moment().format("DD-MM-YYYY h:mm:ss a")
+    },
+    status:{
+        type:Number,
+        default:0
     }
 
 });
@@ -41,24 +45,24 @@ const registerSchema=new mongoose.Schema({
 // const user_registeration=new mongoose.model("user_registeration",registerSchema);
 
 //create document
-const createDocument= async () =>{
-    try{
+// const createDocument= async () =>{
+//     try{
 
-        const newUser=new user_registeration({
-            full_name :"Mustaque Jamakhandi",
-            contact:"+919113647737",
-            email_id:"mustaquemj1111@gmail.com",
-            serial_key:"123456",
-            password:"TXVzdGFxbWpAMQ==",
-            activation_code:"bXVzdGFxdWVtajExMTFAZ21haWwuY29t"
+//         const newUser=new user_registeration({
+//             full_name :"Mustaque Jamakhandi",
+//             contact:"+919113647737",
+//             email_id:"mustaquemj1111@gmail.com",
+//             serial_key:"123456",
+//             password:"TXVzdGFxbWpAMQ==",
+//             activation_code:"bXVzdGFxdWVtajExMTFAZ21haWwuY29t"
 
-        });
-        const result=await newUser.save();
-        console.log(result);
-    }catch(error){
-        console.log(error);
-    }
-}
+//         });
+//         const result=await newUser.save();
+//         console.log(result);
+//     }catch(error){
+//         console.log(error);
+//     }
+// }
 
 // createDocument();
 
