@@ -6,11 +6,11 @@ const mongoose=require('mongoose');
 const moment = require('moment');
 
 const registerSchema=new mongoose.Schema({
-    full_name :{
+    full_name:{
         type:String,
         required:true
     },
-    contact :{
+    contact:{
         type:String,
         required:true
     },
@@ -18,15 +18,15 @@ const registerSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    serial_key :{
+    serial_key:{
         type:String,
         required:true
     },
-    password :{
+    password:{
         type:String,
         required:true
     },
-    activation_code :{
+    activation_code:{
         type:String,
         required:true
     },
@@ -40,6 +40,31 @@ const registerSchema=new mongoose.Schema({
     }
 
 });
+
+const registeration=mongoose.model('user_registeration',registerSchema); //user_registeration->be the name of collection
+
+module.exports=registeration;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // //create collection
 // const user_registeration=new mongoose.model("user_registeration",registerSchema);
@@ -65,11 +90,3 @@ const registerSchema=new mongoose.Schema({
 // }
 
 // createDocument();
-
-const registeration=mongoose.model('user_registeration',registerSchema); //user_registeration->be the name of collection
-
-module.exports=registeration;
-
-// const User=mongoose.model('User',registerSchema);
-
-// model.exports = User;
