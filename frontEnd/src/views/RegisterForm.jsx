@@ -2,8 +2,9 @@
 /*******************user register form*****************/
 
 import {React,colortheme,MuiThemeProvider,useState,useEffect,TextField,
-        Button,InfoSharpIcon,Popover,OverlayTrigger,plugin_for_contact,BootstrapTooltip,axios} 
+        Button,InfoSharpIcon,Popover,OverlayTrigger,plugin_for_contact,BootstrapTooltip,axios,toast} 
         from './Header'
+
 
 
 const RegisterForm = () => {
@@ -111,7 +112,7 @@ const RegisterForm = () => {
                 });
                 event.target.reset();
                 setOpen(false);
-                alert(res.data);
+                (res.data.success) ?  toast(res.data.success ,{autoClose:15000}): toast.error(res.data,{autoClose:15000});
              }
             
         })

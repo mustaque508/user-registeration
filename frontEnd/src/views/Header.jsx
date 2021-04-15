@@ -31,6 +31,9 @@ import Tooltip from '@material-ui/core/Tooltip'
 import {makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
 import validator from 'validator'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 // color theme for button [login and submit button]
 const colortheme = createMuiTheme({
@@ -58,4 +61,4 @@ const colortheme = createMuiTheme({
   export {colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,React,Route,Switch,HomePage,Router,
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
     OverlayTrigger,ReactDOM,BrowserRouter,App,register_input,login_input,Tooltip,BootstrapTooltip,
-     plugin_for_contact,util,axios,validator};
+     plugin_for_contact,util,axios,validator,toast};

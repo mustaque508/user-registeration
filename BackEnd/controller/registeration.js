@@ -13,6 +13,8 @@ const {Router}=require('express');
 
 const router=Router();
 
+const path = require('path');
+
 const transporter=require('../config/email');
 
 const btoa = require('btoa');
@@ -23,6 +25,8 @@ const btoa = require('btoa');
 const validation=require('../validation/reg_validation');
 
 const myModules=require('../models/reg_model');
+
+
 
 
 
@@ -44,9 +48,10 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
           // send activation link to user[email-id]
           transporter.sendMail(mailOptions)
           .then(()=>{
-                res.send(`Account Created successfully please visit your email to activate your account....`);
+                res.json({success:`Account created successfully please visit your registered email to activate your account`});
           }).catch((err)=>{
-                res.send(`Account Created successfully... Sorry!! unable to send activation link please contact admin : ${err}`);
+                console.log(err);
+                res.send(`Account Created successfully... Sorry!! unable to send activation link please contact admin`);
           });
      
 });
@@ -54,7 +59,7 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
 
 // confirm Email
 router.get('/confirm',myModules.checkActivationcode,myModules.changeStatus,(req,res)=>{
-        res.send(`your account is activated..`);
+      res.sendFile('activation.html', { root:'./views'});
 });
 
 module.exports = router;
