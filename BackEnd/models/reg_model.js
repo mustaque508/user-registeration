@@ -61,7 +61,7 @@ exports.changeStatus = (req,res,next) =>{
 
     registeration.updateOne({activation_code},{$set :{status:'1'}})
     .then((updated)=>{
-            (updated.nModified === 1) ? next() : res.send(`Your Account is already activated..`);
+            (updated.nModified === 1) ? next() : res.sendFile('reactivate.html', { root:'./views'});;
 
             
     }).catch((err)=>{

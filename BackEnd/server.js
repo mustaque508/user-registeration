@@ -19,6 +19,9 @@ app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'..','frontEnd','build','index.html'))
 });
 
+
+
+
 // running node server 
 app.listen(PORT,()=>{
     console.log(`successfully server running on ${PORT}`);
