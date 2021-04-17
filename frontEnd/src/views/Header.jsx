@@ -11,7 +11,7 @@ import { Route, Switch } from 'react-router'
 import HomePage from '../views/HomePage'
 import Router from '../config/Router'
 import login_img from '../dist/img/Login.svg'
-import { useLocation } from 'react-router'
+import { useLocation,useHistory} from 'react-router'
 import CommonImage from './CommonImage'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
@@ -26,13 +26,13 @@ import ReactDOM from 'react-dom'
 import '../dist/css/index.css'
 import App from '../views/App'
 import { plugin_for_contact} from '../dist/plugins/Countrycode'
-import register_input, {login_input} from '../views/input_fields'
 import Tooltip from '@material-ui/core/Tooltip'
 import {makeStyles } from '@material-ui/core/styles'
 import axios from 'axios'
 import validator from 'validator'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Welcome from './Welcome'
 toast.configure()
 
 // color theme for button [login and submit button]
@@ -60,5 +60,4 @@ const colortheme = createMuiTheme({
 
   export {colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,React,Route,Switch,HomePage,Router,
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
-    OverlayTrigger,ReactDOM,BrowserRouter,App,register_input,login_input,Tooltip,BootstrapTooltip,
-     plugin_for_contact,util,axios,validator,toast};
+    OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,Welcome,useHistory};

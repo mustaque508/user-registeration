@@ -2,7 +2,7 @@
 
 // Router file
 
-import {React,Route,Switch,HomePage} from '../views/Header'
+import {React,Route,Switch,HomePage,Welcome} from '../views/Header'
 
 function Router() {
     return (
@@ -10,6 +10,7 @@ function Router() {
             <Switch>
                 <Route exact path="/register" component={HomePage}></Route>
                 <Route exact path="/" component={HomePage}></Route> 
+                <Route exact path="/welcome" component={Welcome}></Route>
             </Switch>
         </div>
     )

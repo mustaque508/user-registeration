@@ -34,29 +34,28 @@ const myModules=require('../models/reg_model');
 
 //store data into database
 router.post('/storeData',validation,myModules.storeData,(req,res)=>{
-        
-          const {email_id,uname}=req.body.register_details;
-          let activation_code=btoa(email_id);
+        try{
+            const {email_id,uname}=req.body.register_details;
+            let activation_code=btoa(email_id);
 
-         //mail body
-          let mailOptions={
-                  from:process.env.from,
-                  to:email_id,
-                  subject:process.env.subject,
-                  html:
-                  `<h4>Hii, ${uname}</h4>
-                  <div>
-                        <p>Thanks for getting started with our customer portal</p>
-                        <p>We need a little more information to complete your registration, including a confirmation of your email address.</p>
-                        <p>Click below to confirm your email address:</p>
-                        <p><a href='${process.env.base_url}/confirm?id=${activation_code}'>click here</a><p>
-                        <p>Kind Regards, <strong> Prosoft e-Solutions India Pvt Ltd.</strong></p>
+             //mail body
+            let mailOptions={
+            from:process.env.from,
+            to:email_id,
+            subject:process.env.subject,
+            html:
+            `<h4>Hii, ${uname}</h4>
+            <div>
+                  <p>Thanks for getting started with our customer portal</p>
+                  <p>We need a little more information to complete your registration, including a confirmation of your email address.</p>
+                  <p>Click below to confirm your email address:</p>
+                  <p><a href='${process.env.base_url}/confirm?id=${activation_code}'>click here</a><p>
+                  <p>Kind Regards, <strong> Prosoft e-Solutions India Pvt Ltd.</strong></p>
 
-                  </div> `
-                  // html:`<p>Thanks for registering.. <a href='${process.env.base_url}/confirm?id=${activation_code}'>click here </a>  to activate your account.</p>`
-          }
-       
-          // send activation link to user[email-id]
+            </div> `
+             }
+
+              // send activation link to user[email-id]
           transporter.sendMail(mailOptions)
           .then(()=>{
                 res.json({success:`Account created successfully please visit your  email to activate your account`});
@@ -64,13 +63,27 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
                 console.log(err);
                 res.send(`Account Created successfully... Sorry!! unable to send activation link please contact admin`);
           });
+
+        }catch(err){
+              console.log(`got error in routr[/storeData] : ${err}`);
+        }
+        
+
+        
+       
+         
      
 });
 
 
 // confirm Email
 router.get('/confirm',myModules.checkActivationcode,myModules.changeStatus,(req,res)=>{
-      res.sendFile('activation.html', { root:'./views'});
+      try{
+            res.sendFile('activation.html', { root:'./views'});
+      }catch(err){
+            console.log(`got error in routr[/confirm] : ${err}`);
+      }
+ 
 });
 
 module.exports = router;

@@ -83,12 +83,18 @@ const RegisterForm = () => {
         })
     }
 
+    //Hide Tooltip
+    const hideToolTip =() =>{
+        setOpen(false);
+    }
 
     //submit form 
     const submit =  (event) =>{
 
         event.preventDefault();
         const intlTelInput_error=validate_contact();
+
+        //send data
         axios.post('/storeData',{register_details,intlTelInput_error})
         .then((res)=>{
              
@@ -115,6 +121,8 @@ const RegisterForm = () => {
                 (res.data.success) ?  toast.success(res.data.success ,{autoClose:15000}): toast.error(res.data,{autoClose:15000});
              }
             
+        }).catch((err)=>{
+            console.log(`got error when passing input fields to /storeData : ${err}`);
         })
                       
       
@@ -134,38 +142,38 @@ const RegisterForm = () => {
                         {/* Full Name */}
                         <label htmlFor="uname" className="mb-0">Full Name</label>
                         <BootstrapTooltip title={name_error} placement="right-end" open={open}>
-                            <TextField className="form-control mt-0" type="text" name="uname" id="uname" onChange={inputEvent} />
+                            <TextField className="form-control mt-0" type="text" name="uname" id="uname" onChange={inputEvent} onKeyUp={hideToolTip}/>
                         </BootstrapTooltip>
                         
                         
                         {/* Contact */}
                         <label htmlFor="phone" className="mb-0 mt-2">Contact</label>
                         <BootstrapTooltip title={phone_error} placement="right-end" open={open}>
-                            <TextField className="form-control mt-0"  type="text" name="contact" id="contact" onChange={inputEvent} />
+                            <TextField className="form-control mt-0"  type="text" name="contact" id="contact" onChange={inputEvent} onKeyUp={hideToolTip} />
                         </BootstrapTooltip>
                         
                         {/* Email Address */}
                         <label htmlFor="email_id" className="mb-0 mt-2" >Email Address</label>
                         <BootstrapTooltip title={email_error} placement="right-end" open={open}>
-                            <TextField className="form-control mt-0"  type="email" name="email_id" id="email_id" onChange={inputEvent} />
+                            <TextField className="form-control mt-0"  type="email" name="email_id" id="email_id" onChange={inputEvent} onKeyUp={hideToolTip} />
                         </BootstrapTooltip>
 
                         {/* Serial Key */}
                         <label htmlFor="serial_key" className="mb-0 mt-2">Serial Key</label>
                         <BootstrapTooltip title={serial_key_error} placement="right-end" open={open}>
-                            <TextField className="form-control mt-0"   type="text" name="serial_key" id="serial_key" onChange={inputEvent} />
+                            <TextField className="form-control mt-0"   type="text" name="serial_key" id="serial_key" onChange={inputEvent} onKeyUp={hideToolTip} />
                         </BootstrapTooltip>
                         
                         {/* Password */}
                         <label htmlFor="password" className="mb-0 mt-2" >Password</label>
                         <BootstrapTooltip title={pass_error} placement="right-end" open={open}>
-                            <TextField className="form-control mt-0"  type="password" name="password" id="password" onChange={inputEvent} />
+                            <TextField className="form-control mt-0"  type="password" name="password" id="password" onChange={inputEvent} onKeyUp={hideToolTip}  />
                         </BootstrapTooltip>
 
                         {/* Confirm Password */}
                         <label htmlFor="cpassword" className="mb-0 mt-2">Confirm Password</label>
                         <BootstrapTooltip title={cpass_error} placement="right-end" open={open}>
-                            <TextField className="form-control mt-0" type="password" name="cpassword" id="cpassword" onChange={inputEvent} />
+                            <TextField className="form-control mt-0" type="password" name="cpassword" id="cpassword" onChange={inputEvent} onKeyUp={hideToolTip}  />
                         </BootstrapTooltip>
                         
                        

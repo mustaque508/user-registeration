@@ -6,66 +6,73 @@ const validator = require('validator');
 const registeration=require('../models/registerSchema');
 
 const validation =(req,res,next)=>{
+    try{
 
-    //initialize empty to errors object
-    const errors={};
+         //initialize empty to errors object
+            const errors={};
 
-      //get all input value and perform validation
-      const {uname,contact,email_id,serial_key,password,cpassword}=req.body.register_details;
+        //get all input value and perform validation
+         const {uname,contact,email_id,serial_key,password,cpassword}=req.body.register_details;
 
-      
-     // validation for name
-     errors.name_error=validate_username(uname);
+    
+        // validation for name
+        errors.name_error=validate_username(uname);
 
-     // validation for contact
-     errors.phone_error=req.body.intlTelInput_error;
+        // validation for contact
+        errors.phone_error=req.body.intlTelInput_error;
 
-     // validation for email
-     errors.email_error=validate_email(email_id);
+        // validation for email
+        errors.email_error=validate_email(email_id);
 
-     // validation for serialkey
-     errors.serial_key_error=validate_serialkey(serial_key);
+        // validation for serialkey
+        errors.serial_key_error=validate_serialkey(serial_key);
 
-    //validation for password
-    errors.pass_error=validate_password(password);
+        //validation for password
+        errors.pass_error=validate_password(password);
 
-    errors.cpass_error=validate_confirm_password(cpassword,password);
+        errors.cpass_error=validate_confirm_password(cpassword,password);
 
-    if(checkallvalidation(errors))
-    {
-        
-        // check contact-number and email-id already exist
-        registeration.findOne({email_id})
-        .then((emailExist)=>{
-                if(emailExist)
-                {
-                    errors.email_error="already exist";
-                    res.json({errors});
-                }
-                else
-                {
-                    registeration.findOne({contact})
-                    .then((contactExist)=>{
-                            if(contactExist)
-                            {
-                                errors.phone_error="already exist";
-                                res.json({errors});
-                            }
-                            else
-                            {
-                                // perform next operation which is in registeration[controller]
-                                next();
-                            }
-                    })
+        if(checkallvalidation(errors))
+        {
+            
+            // check contact-number and email-id already exist
+            registeration.findOne({email_id})
+            .then((emailExist)=>{
+                    if(emailExist)
+                    {
+                        errors.email_error="already exist";
+                        res.json({errors});
+                    }
+                    else
+                    {
+                        registeration.findOne({contact})
+                        .then((contactExist)=>{
+                                if(contactExist)
+                                {
+                                    errors.phone_error="already exist";
+                                    res.json({errors});
+                                }
+                                else
+                                {
+                                    // perform next operation which is in registeration[controller]
+                                    next();
+                                }
+                        })
 
-                }
-        })
-  
+                    }
+            })
+
+        }
+        else
+        {
+            res.json({errors});
+        }
+
+    }catch(err){
+        console.log(`got error in register_validation[exports.validation] : ${err}`);
     }
-    else
-    {
-        res.json({errors});
-    }
+
+   
 
 }
 
