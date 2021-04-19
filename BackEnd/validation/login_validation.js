@@ -24,18 +24,18 @@ const validate = (req,res,next)=>{
         {
                 //check Email id is exist or not in database
                 registeration.findOne({email_id})
-                .then((Exist)=>{
-                    if(Exist)
+                .then((exist)=>{
+                    if(exist)
                     {
                         //check email-id is activated or not 
                         registeration.findOne({email_id,status:1})
-                        .then((Exist)=>{
-                            if(Exist)
+                        .then((exist)=>{
+                            if(exist)
                             {
                                 //check Password is same or not 
                                 registeration.findOne({email_id,password:btoa(password)})
-                                .then((Exist)=>{
-                                    if(Exist)
+                                .then((exist)=>{
+                                    if(exist)
                                     {
                                         next();
                                     }
@@ -60,7 +60,7 @@ const validate = (req,res,next)=>{
                     }
                     else
                     {
-                        errors.email_error="email-id not registered";
+                        errors.email_error="email-id is not registered";
                         res.json({errors});
                     }
 

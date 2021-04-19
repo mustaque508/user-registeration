@@ -90,7 +90,7 @@ const LoginForm = () => {
                      <h2 className="card-title text-capitalize text-center">sign in</h2>
                     
                     {/* card content */}
-                    <form method="POST" onSubmit={submit} className="form-group mt-3" id="submit">
+                    <form method="POST" onSubmit={submit} className="form-group mt-3" id="submit" autoComplete="off">
 
                          {/* Email Address */}
                          <label htmlFor="email_id" className="mb-0 mt-2" >Email Address</label>
@@ -98,7 +98,7 @@ const LoginForm = () => {
                             <TextField className="form-control mt-0"  type="email" name="email_id" id="email_id" onChange={inputEvent} onKeyUp={hideToolTip} />
                         </BootstrapTooltip>
 
-                         {/* Email Address */}
+                         {/* Password */}
                          <label htmlFor="password" className="mb-0 mt-2" >Password</label>
                         <BootstrapTooltip title={pass_error} placement="right-end" open={open} >
                             <TextField className="form-control mt-0"  type="password" name="password" id="password" onChange={inputEvent} onKeyUp={hideToolTip} />
@@ -112,7 +112,7 @@ const LoginForm = () => {
                             </MuiThemeProvider>
                             </div>
                             <div className="forgot_pass col p-0 ">
-                                <a href="" className="float-right mr-3" style={{'marginTop':'0.5rem'}}>Forgot Password ?</a>
+                                <Link to="/forgot" className="float-right mr-3" style={{'marginTop':'0.5rem'}}>Forgot Password ?</Link>
                             </div>
                         </div>
 
@@ -140,14 +140,3 @@ export default LoginForm;
 
 
 
-
-
-
-{/* <div className="row  mt-3 d-flex flex-column">
-                            <div className="email col">
-                                <TextField type="text"  label="Email Address"  className="form-control "/>
-                            </div>
-                            <div className="email col">
-                                <TextField type="password"  label="Password"  className="form-control mt-4 "/>
-                            </div>
-                        </div> */}

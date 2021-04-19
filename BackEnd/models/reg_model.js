@@ -73,7 +73,8 @@ exports.changeStatus = (req,res,next) =>{
 
         registeration.updateOne({activation_code},{$set :{status:'1'}})
         .then((updated)=>{
-                (updated.nModified === 1) ? next() : res.sendFile('reactivate.html', { root:'./views'});
+        
+                (updated.nModified === 1) ? next() : res.redirect('/reactivate');
 
                 
         }).catch((err)=>{

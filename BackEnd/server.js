@@ -15,6 +15,9 @@ app.use(require('./controller/registeration'));
 // required login[controller] to perform login operation
 app.use(require('./controller/login'));
 
+// required forgotpassword[controller] to perform forgotpassword operation
+app.use(require('./controller/forgotpassword'));
+
 // used for proxy url
 app.use(express.static(path.join(__dirname,'..','frontEnd','build')));
 

@@ -42,7 +42,13 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
             let mailOptions={
             from:process.env.from,
             to:email_id,
-            subject:process.env.subject,
+            subject:process.env.reg_subject,
+            // html:{
+            //       path:'../BackEnd/views/email.html',
+            //       context:{
+            //             id:activation_code
+            //       }
+            // }
             html:
             `<h4>Hii, ${uname}</h4>
             <div>
@@ -65,7 +71,7 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
           });
 
         }catch(err){
-              console.log(`got error in routr[/storeData] : ${err}`);
+              console.log(`got error in route[/storeData] : ${err}`);
         }
         
 
@@ -78,12 +84,7 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
 
 // confirm Email
 router.get('/confirm',myModules.checkActivationcode,myModules.changeStatus,(req,res)=>{
-      try{
-            res.sendFile('activation.html', { root:'./views'});
-      }catch(err){
-            console.log(`got error in routr[/confirm] : ${err}`);
-      }
- 
+      res.redirect('/activate');
 });
 
 module.exports = router;
