@@ -118,7 +118,7 @@ const RegisterForm = () => {
                 });
                 event.target.reset();
                 setOpen(false);
-                (res.data.success) ?  toast.success(res.data.success ,{autoClose:15000}): toast.error(res.data,{autoClose:15000});
+                (res.data.success) ?  toast.success(res.data.success): toast.error(res.data);
              }
             
         }).catch((err)=>{

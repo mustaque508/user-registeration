@@ -36,6 +36,7 @@ import Welcome from './Welcome'
 import Forgotpassword from './Forgotpassword'
 import Activate from './Activate'
 import Reactivate from './Reactivate'
+import Resetpassword from './Resetpassword'
 toast.configure()
 
 // color theme for button [login and submit button]
@@ -64,4 +65,4 @@ const colortheme = createMuiTheme({
   export {colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,React,Route,Switch,HomePage,Router,
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
     OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,Welcome,useHistory,
-  Forgotpassword,Activate,Reactivate};
+  Forgotpassword,Activate,Reactivate,Resetpassword};

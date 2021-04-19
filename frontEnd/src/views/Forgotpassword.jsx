@@ -58,7 +58,7 @@ const Forgotpassword = () =>{
                 });
                 event.target.reset();
                 setOpen(false);
-                (res.data.success) ?  toast.success(res.data.success ,{autoClose:15000}): toast.error(res.data,{autoClose:15000});
+                (res.data.success) ?  toast.success(res.data.success): toast.error(res.data);
             }
            
         }).catch((err)=>{
@@ -71,7 +71,7 @@ const Forgotpassword = () =>{
         <>
            <div className="container mt-5">
                <div className="row d-flex justify-content-center">
-                   <div className="col-sm-6">
+                   <div className="col-sm-5">
                         <div className="card shadow-sm p-3 mb-5 bg-white rounded">
                             <div className="card-body">
                                 <h5 className="card-title text-center">Forgot Password</h5>

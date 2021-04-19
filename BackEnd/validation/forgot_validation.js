@@ -4,7 +4,7 @@ const validator = require('validator');
 
 const registeration=require('../models/registerSchema');
 
-const validate=(req,res,next)=>{
+exports.validateEmail=(req,res,next)=>{
 
     try{
        
@@ -69,5 +69,106 @@ const validate_email =(props) =>{
 }
 
 
+//validate password
+exports.validate_password = (req,res,next) =>{
 
-module.exports=validate;
+    try
+    {
+        //get data
+        const {password,cpassword}=req.body.password_details;
+
+        //initialize empty to errors object
+         const errors={};
+
+        //validation for password
+        errors.pass_error=validatePassword(password);
+
+        errors.cpass_error=validate_confirm_password(cpassword,password);
+
+        (validator.isEmpty(errors.pass_error) && validator.isEmpty(errors.cpass_error)) ? next() : res.json({errors});
+    
+    }
+    catch(err)
+    {
+        console.log(`got error in password validation : ${err}`);
+    }
+  
+
+}
+
+
+
+
+//validation for Password
+const validatePassword = (props) =>{
+    
+    //check password is empty string ?
+    if(validator.isEmpty(props))
+    {
+        return "required";
+    }
+
+    //password length should be minimum 8 characters.
+    else if(props.length<8)
+    {
+        return "Length should be minimum 8 characters";
+    }
+
+    //check password contain atleast one numeric character 
+    else if(!props.match(/[0-9]+/))
+    {
+        return "The password must include atleast one numeric character";
+    }
+
+    //check password contain atleast one alphabetic letter
+    else if(!props.match(/[a-z]+/))
+    {
+      return "The password must include atleast one Alphabetic letter";
+    }
+
+    // check password contain atleast one capital letter
+    else if(!props.match(/[A-Z]+/))
+    {
+      return "The password must include atleast one capital letter";
+    }
+
+    // check password contain atleast one special character
+    else if(!props.match(/[\W]+/))
+    {
+      return "The password must include atleast one special character";
+    }
+
+    // check password should not contain any white space
+    else if(props.match(/[\s]/))
+    {
+        return "The password should not contain white space";
+    }
+    else
+    {
+        return "";
+    }
+
+
+}
+
+
+//validation for confirm_password
+const validate_confirm_password = (password,cpassword) =>{
+
+    //check confirm-password is empty string ?
+    if(validator.isEmpty(password))
+    {
+        return "required";
+    }
+    else if(password !== cpassword)
+    {
+
+      return "mismatch password";
+    }
+    else
+    {
+      return "";
+    }
+
+
+}
