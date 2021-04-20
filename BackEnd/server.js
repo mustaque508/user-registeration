@@ -9,6 +9,7 @@ const PORT=process.env.PORT || 5000;
 app.use(express.json());
 
 
+
 // required registeration[controller] to perform registeration operation
 app.use(require('./controller/registeration'));
 

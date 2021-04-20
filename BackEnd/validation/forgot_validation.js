@@ -57,7 +57,7 @@ exports.validateEmail=(req,res,next)=>{
           
        
     }catch(err){
-        console.log(`got error in forgotpassword validation : ${err}`);
+        res.send(`got error in forgotpassword validation : ${err}`);
     }
 
 }

@@ -75,7 +75,7 @@ router.post('/forgot',Mymodule.validateEmail,(req,res)=>{
     }
     catch(err)
     {
-        console.log(`got error in route[/forgot] : ${err}`);
+        res.send(`got error in route[/forgot] : ${err}`);
     }
 });
 
@@ -105,6 +105,7 @@ router.post('/resetpassword',Mymodule.validate_password,(req,res)=>{
 
         if(!validator.isEmpty(activation_code))
         {
+            //update password in database
             registeration.updateOne({activation_code},{$set :{password:btoa(password)}})
             .then((updated)=>{
                     (updated.nModified === 1) ? res.json({success:'Your password is updated successfully'}) :res.send('Nothing has changed in password.');
@@ -118,7 +119,7 @@ router.post('/resetpassword',Mymodule.validate_password,(req,res)=>{
     }
     catch(err)
     {
-        console.log(`got error in route[/resetpassword] : ${err}`); 
+        res.send(`got error in route[/resetpassword] : ${err}`); 
     }
 });
 

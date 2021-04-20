@@ -10,7 +10,8 @@ const LoginForm = () => {
     // get input fields
     const[login_details,setLogin_detail]=useState({
         'email_id':'',
-        'password':''
+        'password':'',
+        'remember_me':false
     });
 
     // error_fields
@@ -34,15 +35,13 @@ const LoginForm = () => {
 
     // change input fields based on [onchange ]
     const inputEvent = (event) =>{
-        const{name,value}=event.target;
-        setLogin_detail((prevValue)=>{
-            return{
-                ...prevValue,
-                [name]:value
-            }
-
-        })
+        const value =event.target.type === "checkbox" ? event.target.checked : event.target.value;
+        setLogin_detail({
+            ...login_details,
+            [event.target.name]: value
+        });
     }
+
 
     //submit form 
     const submit=(event)=>{
@@ -108,7 +107,7 @@ const LoginForm = () => {
                         <div className="row ml-0">
                             <div className="remember_me col p-0">
                             <MuiThemeProvider theme={colortheme}>
-                                <FormControlLabel control={<Checkbox color="primary"/> } label="Remember Me"/>
+                                <FormControlLabel control={<Checkbox color="primary" id="remember_me" name="remember_me" checked={login_details.remember_me} onChange={inputEvent} /> } label="Remember Me"/>
                             </MuiThemeProvider>
                             </div>
                             <div className="forgot_pass col p-0 ">

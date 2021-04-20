@@ -10,6 +10,8 @@ exports.storeData=(req,res,next)=>{
         const{uname,contact,email_id,serial_key,password}=req.body.register_details;
         let activation_code=btoa(email_id);
     
+    
+      
         const newRegister=new registeration({
             full_name:uname,
             contact:contact,
@@ -18,20 +20,21 @@ exports.storeData=(req,res,next)=>{
             password:btoa(password),
             activation_code:activation_code
         });
-    
+
+
         newRegister.save((err)=>{
             if(!err)
-            {
-                next();
-            }
-            else
-            {
-                res.json({mes:`Sorry !!! internal server error : ${err}`});
-            }
-        });   
-    
+                {
+                    next();
+                }
+             else
+                {
+                    res.json({mes:`Sorry !!! internal server error : ${err}`});
+                }
+            });   
+           
     }catch(err){
-        console.log(`got error in model[exports.storeData] : ${err}`);
+        res.send(`got error in model[exports.storeData] : ${err}`);
     }
 
   
@@ -59,7 +62,7 @@ exports.checkActivationcode = (req,res,next)=>{
         }
 
     }catch(err){
-        console.log(`got error in model[exports.checkActivationcode] : ${err}`);
+        res.send(`got error in model[exports.checkActivationcode] : ${err}`);
     }
         
 }
@@ -82,7 +85,7 @@ exports.changeStatus = (req,res,next) =>{
         });
 
     }catch(err){
-        console.log(`got error in model[exports.changeStatus] : ${err}`);
+        res.send(`got error in model[exports.changeStatus] : ${err}`);
     }
     
 }

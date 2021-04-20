@@ -69,7 +69,7 @@ const validation =(req,res,next)=>{
         }
 
     }catch(err){
-        console.log(`got error in register_validation[exports.validation] : ${err}`);
+        res.send(`got error in register_validation[exports.validation] : ${err}`);
     }
 
    

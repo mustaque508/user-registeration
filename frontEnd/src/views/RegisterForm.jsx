@@ -108,17 +108,25 @@ const RegisterForm = () => {
              }
              else
              {
-                setregister_details({
-                    'uname':'',
-                    'phone':'',
-                    'email_id':'',
-                    'serial_key':'',
-                    'password':'',
-                    'cpassword':''
-                });
-                event.target.reset();
-                setOpen(false);
-                (res.data.success) ?  toast.success(res.data.success): toast.error(res.data);
+                if(res.data.success)
+                {
+                    setregister_details({
+                        'uname':'',
+                        'phone':'',
+                        'email_id':'',
+                        'serial_key':'',
+                        'password':'',
+                        'cpassword':''
+                    });
+                    event.target.reset();
+                    setOpen(false);
+                    toast.success(res.data.success)
+                }
+                else
+                {
+                    toast.error(res.data,{autoClose: false});
+                }
+               
              }
             
         }).catch((err)=>{

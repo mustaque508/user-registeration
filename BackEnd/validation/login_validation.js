@@ -76,7 +76,7 @@ const validate = (req,res,next)=>{
         
 
     }catch(err){
-        console.log(`got error in login validations : ${err}`);
+        res.send(`got error in login validations : ${err}`);
     }
    
 }

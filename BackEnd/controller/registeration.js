@@ -71,7 +71,7 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
           });
 
         }catch(err){
-              console.log(`got error in route[/storeData] : ${err}`);
+              res.send(`got error in route[/storeData] : ${err}`);
         }
         
 
