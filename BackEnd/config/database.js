@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 
 require('../models/registerSchema');
 
-mongoose.connect("mongodb://localhost:27017/office_db",{
+mongoose.connect("mongodb://localhost:27017/prosoft_testdb",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

@@ -1,14 +1,17 @@
 
 
-import { React,colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,BootstrapTooltip,useState,axios,useHistory} from './Header'
+import { React,colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,
+    BootstrapTooltip,useState,axios,useHistory,useEffect,Cookies,atob} from './Header'
 
 // login Component
 const LoginForm = () => {
 
     const history=useHistory();
 
+    
+
     // get input fields
-    const[login_details,setLogin_detail]=useState({
+    const[login_details,setLogin_details]=useState({
         'email_id':'',
         'password':'',
         'remember_me':false
@@ -32,11 +35,30 @@ const LoginForm = () => {
         setOpen(false);
     }
 
+     //set cookie value 
+     useEffect(() => {
+
+         const email_id=document.getElementById("email_id");
+         const password=document.getElementById("password");
+         const remember_me=document.getElementById("remember_me");
+
+         email_id.value=(Cookies.get('email_cookie'))? atob(Cookies.get('email_cookie')) :"";
+         password.value=(Cookies.get('password_cookie'))? atob(Cookies.get('password_cookie')) :"";
+         remember_me.value=(Cookies.get('rememberme_cookie'))? atob(Cookies.get('rememberme_cookie')) :"";
+
+         setLogin_details({
+             'email_id': email_id.value,
+             'password': password.value,
+             'remember_me': remember_me.value,
+         });
+
+        },[]);
+    
 
     // change input fields based on [onchange ]
     const inputEvent = (event) =>{
         const value =event.target.type === "checkbox" ? event.target.checked : event.target.value;
-        setLogin_detail({
+        setLogin_details({
             ...login_details,
             [event.target.name]: value
         });

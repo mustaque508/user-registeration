@@ -6,6 +6,8 @@ const {Router}=require('express');
 
 const router=Router();
 
+const btoa = require('btoa');
+
 const registeration=require('../models/registerSchema');
 
 const validatiion=require('../validation/login_validation');
@@ -31,9 +33,9 @@ const setCookie = (req,res,next) =>{
     if(remember_me)
     {
         //set cookie
-        res.cookie('email_cookie',email_id,{expires:REMEMBERME_COOKIE_EXPIRY});
-        res.cookie('password_cookie',password,{expires:REMEMBERME_COOKIE_EXPIRY});
-        res.cookie('rememberme_cookie',remember_me,{expires:REMEMBERME_COOKIE_EXPIRY});
+        res.cookie('email_cookie',btoa(email_id),{expires:REMEMBERME_COOKIE_EXPIRY});
+        res.cookie('password_cookie',btoa(password),{expires:REMEMBERME_COOKIE_EXPIRY});
+        res.cookie('rememberme_cookie',btoa(remember_me),{expires:REMEMBERME_COOKIE_EXPIRY});
 
         next();
     }

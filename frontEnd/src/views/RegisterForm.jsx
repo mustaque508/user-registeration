@@ -103,7 +103,7 @@ const RegisterForm = () => {
                  const {name_error,phone_error,email_error,serial_key_error,pass_error,cpass_error}=res.data.errors;
                  setErrors({
                     name_error,phone_error,email_error,serial_key_error,pass_error,cpass_error
-                 })
+                 });
                  setOpen(true);
              }
              else
@@ -120,7 +120,7 @@ const RegisterForm = () => {
                     });
                     event.target.reset();
                     setOpen(false);
-                    toast.success(res.data.success)
+                    toast.success(res.data.success);
                 }
                 else
                 {
@@ -131,7 +131,7 @@ const RegisterForm = () => {
             
         }).catch((err)=>{
             console.log(`got error when passing input fields to /storeData : ${err}`);
-        })
+        });
                       
       
     }
