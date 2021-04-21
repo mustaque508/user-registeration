@@ -35,7 +35,7 @@ const setCookie = (req,res,next) =>{
         //set cookie
         res.cookie('email_cookie',btoa(email_id),{expires:REMEMBERME_COOKIE_EXPIRY});
         res.cookie('password_cookie',btoa(password),{expires:REMEMBERME_COOKIE_EXPIRY});
-        res.cookie('rememberme_cookie',btoa(remember_me),{expires:REMEMBERME_COOKIE_EXPIRY});
+        res.cookie('rememberme_cookie',remember_me,{expires:REMEMBERME_COOKIE_EXPIRY});
 
         next();
     }

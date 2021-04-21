@@ -8,8 +8,6 @@ const LoginForm = () => {
 
     const history=useHistory();
 
-    
-
     // get input fields
     const[login_details,setLogin_details]=useState({
         'email_id':'',
@@ -25,6 +23,7 @@ const LoginForm = () => {
 
     // Destructing of objects
     const{email_error,pass_error}=errors;
+    const{email_id,password,remember_me}=login_details;
     
     // show tooltip 
       const [open, setOpen] = useState(false);
@@ -38,21 +37,14 @@ const LoginForm = () => {
      //set cookie value 
      useEffect(() => {
 
-         const email_id=document.getElementById("email_id");
-         const password=document.getElementById("password");
-         const remember_me=document.getElementById("remember_me");
-
-         email_id.value=(Cookies.get('email_cookie'))? atob(Cookies.get('email_cookie')) :"";
-         password.value=(Cookies.get('password_cookie'))? atob(Cookies.get('password_cookie')) :"";
-         remember_me.value=(Cookies.get('rememberme_cookie'))? atob(Cookies.get('rememberme_cookie')) :"";
-
+        const email_id=((Cookies.get("email_cookie")))? atob(Cookies.get("email_cookie")):"";
+        const password=((Cookies.get("password_cookie")))? atob(Cookies.get("password_cookie")):"";
+        const remember_me = (Cookies.get("rememberme_cookie") === "true");
          setLogin_details({
-             'email_id': email_id.value,
-             'password': password.value,
-             'remember_me': remember_me.value,
+             email_id,password,remember_me
          });
 
-        },[]);
+    },[]);
     
 
     // change input fields based on [onchange ]
@@ -68,6 +60,7 @@ const LoginForm = () => {
     //submit form 
     const submit=(event)=>{
         event.preventDefault();
+
         
         //send Data
         axios.post('/login',login_details)
@@ -116,20 +109,20 @@ const LoginForm = () => {
                          {/* Email Address */}
                          <label htmlFor="email_id" className="mb-0 mt-2" >Email Address</label>
                         <BootstrapTooltip title={email_error}  placement="right-end" open={open} >
-                            <TextField className="form-control mt-0"  type="email" name="email_id" id="email_id" onChange={inputEvent} onKeyUp={hideToolTip} />
+                            <TextField className="form-control mt-0"  type="email" name="email_id" id="email_id" onChange={inputEvent} onKeyUp={hideToolTip} value={email_id} />
                         </BootstrapTooltip>
 
                          {/* Password */}
                          <label htmlFor="password" className="mb-0 mt-2" >Password</label>
                         <BootstrapTooltip title={pass_error} placement="right-end" open={open} >
-                            <TextField className="form-control mt-0"  type="password" name="password" id="password" onChange={inputEvent} onKeyUp={hideToolTip} />
+                            <TextField className="form-control mt-0"  type="password" name="password" id="password" onChange={inputEvent} onKeyUp={hideToolTip} value ={password}/>
                         </BootstrapTooltip>
                         
                         {/* checkbox */}
                         <div className="row ml-0">
                             <div className="remember_me col p-0">
                             <MuiThemeProvider theme={colortheme}>
-                                <FormControlLabel control={<Checkbox color="primary" id="remember_me" name="remember_me" checked={login_details.remember_me} onChange={inputEvent} /> } label="Remember Me"/>
+                                <FormControlLabel control={<Checkbox color="primary" id="remember_me" name="remember_me" checked={login_details.remember_me} onChange={inputEvent} value={remember_me} /> } label="Remember Me"/>
                             </MuiThemeProvider>
                             </div>
                             <div className="forgot_pass col p-0 ">
