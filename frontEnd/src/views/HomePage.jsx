@@ -1,6 +1,7 @@
 
 import {React,CommonImage,useLocation,RegisterForm,LoginForm} from './Header'
 
+
 const HomePage = () => {
 
     return (

@@ -9,7 +9,6 @@ import {React,colortheme,MuiThemeProvider,useState,useEffect,TextField,
 
 const RegisterForm = () => {
 
-
     // get input fields
     const [register_details, setregister_details] = useState({
         'uname':'',

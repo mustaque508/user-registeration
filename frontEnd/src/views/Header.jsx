@@ -5,7 +5,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles"
 import TextField from '@material-ui/core/TextField'
 import { Checkbox,FormControlLabel} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
-import { Link,BrowserRouter } from 'react-router-dom'
+import { Link,BrowserRouter,Redirect } from 'react-router-dom'
 import React ,{ useState,useEffect } from 'react'
 import { Route, Switch } from 'react-router'
 import HomePage from '../views/HomePage'
@@ -37,8 +37,9 @@ import Forgotpassword from './Forgotpassword'
 import Activate from './Activate'
 import Reactivate from './Reactivate'
 import Resetpassword from './Resetpassword'
-import Cookies from 'js-cookie';
-import atob from 'atob';
+import Cookies from 'js-cookie'
+import atob from 'atob'
+import PageNotFound from './PageNotFound'
 
 toast.configure()
 
@@ -68,4 +69,4 @@ const colortheme = createMuiTheme({
   export {colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,React,Route,Switch,HomePage,Router,
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
     OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,Welcome,useHistory,
-  Forgotpassword,Activate,Reactivate,Resetpassword,Cookies,atob};
+  Forgotpassword,Activate,Reactivate,Resetpassword,Cookies,atob,Redirect,PageNotFound};

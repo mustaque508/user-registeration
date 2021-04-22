@@ -2,6 +2,8 @@
 
 require('dotenv').config();
 
+const localStorage=require ('localStorage');
+
 const {Router}=require('express');
 
 const router=Router();
@@ -29,6 +31,7 @@ const setCookie = (req,res,next) =>{
  
     //get data
     const {remember_me,email_id,password}=req.body;
+    
 
     if(remember_me)
     {
@@ -36,7 +39,6 @@ const setCookie = (req,res,next) =>{
         res.cookie('email_cookie',btoa(email_id),{expires:REMEMBERME_COOKIE_EXPIRY});
         res.cookie('password_cookie',btoa(password),{expires:REMEMBERME_COOKIE_EXPIRY});
         res.cookie('rememberme_cookie',remember_me,{expires:REMEMBERME_COOKIE_EXPIRY});
-
         next();
     }
     else
@@ -50,17 +52,21 @@ const setCookie = (req,res,next) =>{
    
 }
 
+
+
 router.post('/login',validatiion,setCookie,(req,res)=>{
 
         const {email_id}=req.body;
-
+        
+     
         //get name based on email-id from database
          registeration.findOne({email_id})
          .then((data)=>{
                  if(data)
-                 {
+                 { 
                      const {full_name}=data;
                      res.json({full_name});
+
                  }
 
          }).catch((err)=>{

@@ -2,6 +2,8 @@
 import {MuiThemeProvider,colortheme,Button,Link} from  './Header'
 
 const Reactivate =()=>{
+
+   
     return (
         <>
          <div class="conainer mt-3 ">
@@ -13,7 +15,7 @@ const Reactivate =()=>{
                             <p>click below button to login</p>
 
                             <MuiThemeProvider theme={colortheme}>
-                            <Button  type="submit" variant="contained" color="primary"><Link to='/' className="text-white text-decoration-none">click here</Link></Button>
+                            <Button  type="button" variant="contained" color="primary"><Link to='/' className="text-white text-decoration-none">click here</Link></Button>
                             </MuiThemeProvider>
 
                         </div>

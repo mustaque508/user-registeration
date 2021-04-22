@@ -1,17 +1,12 @@
 /***********Welcome Page **************************/
 
-import {useLocation,MuiThemeProvider,colortheme,Button,Cookies,useHistory,toast} from './Header'
+import {MuiThemeProvider,colortheme,Button,Cookies,useHistory,toast} from './Header'
 
 
-const Welcome = () =>{
+const Welcome = (props) =>{
 
-    const location=useLocation();
 
     const history=useHistory();
-
-    // get username from useHistory hook
-    const username=location.state;
-
 
     //logout
     const logout= () =>{
@@ -31,7 +26,7 @@ const Welcome = () =>{
     return (
         <>
             <div>
-                <h3>Welcome back,{username}</h3>
+                <h3>Welcome back,{props.username}</h3>
 
                  {/* Logout button */}
                  <MuiThemeProvider theme={colortheme}>
