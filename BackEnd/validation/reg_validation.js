@@ -5,6 +5,9 @@ const validator = require('validator');
 
 const registeration=require('../models/registerSchema');
 
+const axios = require('axios');
+
+
 const validation =(req,res,next)=>{
     try{
 
@@ -54,13 +57,62 @@ const validation =(req,res,next)=>{
                                 }
                                 else
                                 {
-                                    // perform next operation which is in registeration[controller]
-                                    next();
+                                   
+
+                                    //Validate Serial key already used
+                                    registeration.findOne({serial_key})
+                                    .then((Exist)=>{
+                                        if(Exist)
+                                        {
+                                            errors.serial_key_error="already exist";
+                                            res.json({errors});
+                                        }
+                                        else
+                                        {
+                                            
+                                    
+                                            //check whether serial key is invalid ?
+                                            axios.post(process.env.API_KEY,null,{params :{
+                                                serial_key,
+                                                hdd_address:'',
+                                                product_id:process.env.product_id  
+                                             }})
+                                            .then((response)=>{
+                                                if(response.data !=="INVALID_SERIAL_KEY")
+                                                {
+                                                     // perform next operation which is in registeration[controller]
+                                                     next();
+
+                                                }
+                                                else
+                                                {
+                                                    errors.serial_key_error="Invalid serial key";
+                                                    res.json({errors}); 
+                                                }
+                                            })
+                                            .catch((err)=>{
+                                                res.send(`got an error when validating serial key : ${err}`);
+                                            });
+                                            
+                                           
+                                        }
+
+                                    })
+
+    
+
+                                 
+                                   
                                 }
-                        })
+                        }).catch((err)=>{
+                            res.send(`got error when checking contact already exist or not  : ${err}`);
+                        });
+            
 
                     }
-            })
+            }).catch((err)=>{
+                res.send(`got error when checking email-id already exist or not  : ${err}`);
+            });
 
         }
         else

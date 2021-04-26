@@ -10,11 +10,9 @@ const router=Router();
 
 const btoa = require('btoa');
 
-const session = require('express-session');
 
 const transporter=require('../config/email');
 
-const moment = require('moment');
 
 const registeration=require('../models/registerSchema');
 

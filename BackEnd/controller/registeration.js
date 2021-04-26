@@ -14,7 +14,7 @@ const {Router}=require('express');
 
 const router=Router();
 
-const path = require('path');
+
 
 const transporter=require('../config/email');
 
