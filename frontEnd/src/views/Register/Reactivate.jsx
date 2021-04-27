@@ -1,5 +1,5 @@
 /************* Reactivate view *********************/
-import {MuiThemeProvider,colortheme,Button,Link} from  './Header'
+import {MuiThemeProvider,colortheme,Button,Link} from  '../Header'
 
 const Reactivate =()=>{
 

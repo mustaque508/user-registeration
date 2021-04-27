@@ -1,24 +1,15 @@
-/****************************user Login Controller **************************************/
+// /****************************user Login Controller **************************************/
 
 require('dotenv').config();
-
 const {Router}=require('express');
-
 const router=Router();
-
 const btoa = require('btoa');
+const validations=require('../validation');
+const RegisterSchema=require('../Schemas/RegisterSchema');
+const validator = require('validator');
 
-const registeration=require('../models/registerSchema');
 
-const validatiion=require('../validation/login_validation');
-
-const jwt=require('jsonwebtoken');
-
-const cookieParser = require('cookie-parser');
-
-router.use(cookieParser());
-
-//cookie expiry
+//cookie expiry for 1 day
 const REMEMBERME_COOKIE_EXPIRY=new Date(Date.now()+86400000);
 
 
@@ -51,19 +42,94 @@ const setCookie = (req,res,next) =>{
 }
 
 
+//input validation
+const validation = (req,res,next)=>{
+    try{
 
-router.post('/login',validatiion,setCookie,(req,res)=>{
+        //get data
+        const {email_id,password}=req.body;
+
+        const errors={};
+
+        errors.email_error=validations.validate_email(email_id);
+
+        errors.pass_error=validations.validate_pass(password);
+
+        if(validator.isEmpty(errors.email_error) && validator.isEmpty(errors.pass_error))
+        {
+                //check Email id is exist or not in database
+                RegisterSchema.registeration.findOne({email_id})
+                .then((exist)=>{
+                    if(exist)
+                    {
+                        //check email-id is activated or not 
+                        RegisterSchema.registeration.findOne({email_id,status:1})
+                        .then((exist)=>{
+                            if(exist)
+                            {
+                                //check Password is same or not 
+                                RegisterSchema.registeration.findOne({email_id,password:btoa(password)})
+                                .then((exist)=>{
+                                    if(exist)
+                                    {
+                                        next();
+                                    }
+                                    else
+                                    {
+                                        errors.pass_error="Incorrect password";
+                                        res.json({errors});
+                                    }
+                                }).catch((err)=>{
+                                    console.log(`got Error when checking password : ${err}`);
+                                });
+                            }
+                            else
+                            {
+                                errors.email_error="please activate your account ";
+                                res.json({errors}); 
+                            }
+
+                        }).catch((err)=>{
+                            console.log(`got Error when checking status : ${err}`);
+                        });
+                    }
+                    else
+                    {
+                        errors.email_error="email-id is not registered";
+                        res.json({errors});
+                    }
+
+                }).catch((err)=>{
+                    console.log(`got error when checking Email Id is exist or not in database : ${err} `);
+                })
+        }
+        else
+        {
+            res.json({errors});
+        }
+
+        
+
+    }catch(err){
+        res.send(`got error in login validations : ${err}`);
+    }
+   
+   
+}
+
+
+//login
+router.post('/login',validation,setCookie,(req,res)=>{
 
         const {email_id}=req.body;
-        
-     
+
         //get name based on email-id from database
-         registeration.findOne({email_id})
+        RegisterSchema.registeration.findOne({email_id})
          .then((data)=>{
                  if(data)
                  { 
-                     const {full_name}=data;
-                     res.json({full_name});
+                     const {full_name,serial_key}=data;
+                     res.json({full_name,serial_key});
 
                  }
 

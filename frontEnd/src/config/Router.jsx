@@ -2,10 +2,12 @@
 
 // Router file
 
-import {React,Route,Switch,HomePage,Welcome,Forgotpassword,Activate,Reactivate,
-        Resetpassword,useLocation,Redirect,useHistory,PageNotFound} from '../views/Header'
+import {React,Route,Switch,HomePage,Forgotpassword,Reactivate,
+        Resetpassword,useLocation,Redirect,useHistory,PageNotFound,Activate} from '../views/Header'
 
-function Router() {
+import Welcome from '../Welcome'
+
+const Router = () => {
 
     const location=useLocation();
 
@@ -23,7 +25,8 @@ function Router() {
                 <Route exact path="/register">
                     {(history.action === "PUSH") ? <HomePage/> : <Redirect to="/" /> }
                 </Route>
-
+                
+                
                 <Route exact path="/welcome">
                     {(username) ? <Welcome username={username}/> : <Redirect to="/" /> }
                 </Route>
@@ -37,10 +40,6 @@ function Router() {
                 <Route exact path="/reactivate" component={Reactivate}></Route> 
 
                 <Route exact path="/change-password/:id/:token" component={Resetpassword}></Route> 
-               
-                {/* <Route exact path="/change-password/:id/:token">
-                    {(history.action === "PUSH") ? <Resetpassword/> : <Redirect to="/" /> }
-                </Route> */}
 
                 <Route component={PageNotFound} />
 

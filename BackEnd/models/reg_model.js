@@ -1,8 +1,10 @@
 /*************************registeration model**********************************************************/
 
-const registeration=require('./registerSchema');
+const RegisterSchema =require('../Schemas/RegisterSchema')
 const btoa = require('btoa');
 const validator=require('validator');
+
+
 
 // store userdata into database
 exports.storeData=(req,res,next)=>{
@@ -12,7 +14,7 @@ exports.storeData=(req,res,next)=>{
     
     
       
-        const newRegister=new registeration({
+        const newRegister=new RegisterSchema.registeration({
             full_name:uname,
             contact:contact,
             email_id:email_id,
@@ -29,7 +31,7 @@ exports.storeData=(req,res,next)=>{
                 }
              else
                 {
-                    res.json({mes:`Sorry !!! internal server error : ${err}`});
+                    res.send(`Sorry !!! internal server error : ${err}`);
                 }
             });   
            
@@ -47,7 +49,7 @@ exports.checkActivationcode = (req,res,next)=>{
 
         if(!(validator.isEmpty(activation_code)))
         {
-            registeration.findOne({activation_code})
+            RegisterSchema.registeration.findOne({activation_code})
             .then((exist)=>{
                 (exist) ? next() : res.send(`unable to load your request wrong actiation code`);
 
@@ -74,7 +76,7 @@ exports.changeStatus = (req,res,next) =>{
 
         const activation_code=req.query.id;
 
-        registeration.updateOne({activation_code},{$set :{status:'1'}})
+        RegisterSchema.registeration.updateOne({activation_code},{$set :{status:'1'}})
         .then((updated)=>{
         
                 (updated.nModified === 1) ? next() : res.redirect('/reactivate');
@@ -89,3 +91,19 @@ exports.changeStatus = (req,res,next) =>{
     }
     
 }
+
+
+//get _id and username based on [serial_key]
+exports.getID = async (props) =>{
+    try{
+        const result= await RegisterSchema.registeration.findOne({serial_key:props});
+        if(result)
+        {
+            return result;
+        }
+    }catch(err){
+      console.log(`got error in model[exports.getID] : ${err}`);
+    }
+}
+
+

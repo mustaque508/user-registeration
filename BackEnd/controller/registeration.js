@@ -7,34 +7,127 @@
 */
 
 
-
-require('dotenv').config();
-
 const {Router}=require('express');
-
 const router=Router();
-
-
-
+const validations=require('../validation');
+const RegisterSchema=require('../Schemas/RegisterSchema');
+const axios = require('axios');
+require('dotenv').config();
 const transporter=require('../config/email');
-
 const btoa = require('btoa');
 
 
-
-// validation is middelware [pass input data to reg_validatiion for validation]
-const validation=require('../validation/reg_validation');
-
+// myModules is middelware [pass input data to register_model to store input data]
 const myModules=require('../models/reg_model');
 
 
+//input validation
+const validation = (req,res,next) =>{
+
+     //get all input value and perform validation
+     const {uname,contact,email_id,serial_key,password,cpassword}=req.body.register_details;
+
+     //initialize empty to errors object
+     const errors={};
+
+     // validations
+     errors.name_error=validations.validate_username(uname);
+     errors.phone_error=req.body.intlTelInput_error;
+     errors.email_error=validations.validate_email(email_id);
+     errors.serial_key_error=validations.validate_serialkey(serial_key);
+     errors.pass_error=validations.validate_password(password);
+     errors.cpass_error=validations.validate_confirm_password(cpassword,password);
+
+     if(validations.checkallvalidation(errors)){
+            
+            // check contact-number and email-id already exist
+            RegisterSchema.registeration.findOne({email_id})
+            .then((emailExist)=>{
+                    if(emailExist)
+                    {
+                        errors.email_error="already exist";
+                        res.json({errors});
+                    }
+                    else
+                    {
+                        RegisterSchema.registeration.findOne({contact})
+                        .then((contactExist)=>{
+                                if(contactExist)
+                                {
+                                    errors.phone_error="already exist";
+                                    res.json({errors});
+                                }
+                                else
+                                {
+                                   
+
+                                    //Validate Serial key already used
+                                    RegisterSchema.registeration.findOne({serial_key})
+                                    .then((Exist)=>{
+                                        if(Exist)
+                                        {
+                                            errors.serial_key_error="already used";
+                                            res.json({errors});
+                                        }
+                                        else
+                                        {
+                                            
+                                    
+                                            //check whether serial key is invalid ?
+                                            axios.post(process.env.API_KEY,null,{params :{
+                                                serial_key,
+                                                hdd_address:'',
+                                                product_id:process.env.product_id  
+                                             }})
+                                            .then((response)=>{
+                                                if(response.data !=="INVALID_SERIAL_KEY")
+                                                {
+                                                     // perform next operation which is in registeration[controller]
+                                                     next();
+
+                                                }
+                                                else
+                                                {
+                                                    errors.serial_key_error="Invalid serial key";
+                                                    res.json({errors}); 
+                                                }
+                                            })
+                                            .catch((err)=>{
+                                                res.send(`got an error when validating serial key : ${err}`);
+                                            });
+                                            
+                                           
+                                        }
+
+                                    })
+
+    
+
+                                 
+                                   
+                                }
+                        }).catch((err)=>{
+                            res.send(`got error when checking contact already exist or not  : ${err}`);
+                        });
+            
+
+                    }
+            }).catch((err)=>{
+                res.send(`got error when checking email-id already exist or not  : ${err}`);
+            });
+
+      }
+      else{
+            res.json({errors});
+      }
+
+}
 
 
-
-
-//store data into database
-router.post('/storeData',validation,myModules.storeData,(req,res)=>{
-        try{
+//send Email
+const sendEmail =(req,res,next)=>{
+      
+      try{
             const {email_id,uname}=req.body.register_details;
             let activation_code=btoa(email_id);
 
@@ -61,10 +154,12 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
             </div> `
              }
 
-              // send activation link to user[email-id]
+            // send activation link to user[email-id]
           transporter.sendMail(mailOptions)
           .then(()=>{
-                res.json({success:`Account created successfully please visit your  email to activate your account`});
+
+                  next();
+
           }).catch((err)=>{
                 console.log(err);
                 res.send(`Account Created successfully... Sorry!! unable to send activation link please contact admin`);
@@ -75,10 +170,11 @@ router.post('/storeData',validation,myModules.storeData,(req,res)=>{
         }
         
 
-        
-       
-         
-     
+}
+
+//store data into database
+router.post('/storeData',validation,sendEmail,myModules.storeData,(req,res)=>{
+     res.json({success:`Account created successfully please visit your  email to activate your account`});           
 });
 
 

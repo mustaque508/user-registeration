@@ -1,7 +1,7 @@
 /******************************Forgot Password ***************************/
 
 
-import {TextField,BootstrapTooltip,MuiThemeProvider,Button,colortheme,useState,axios,toast} from './Header'
+import {TextField,BootstrapTooltip,MuiThemeProvider,Button,colortheme,useState,axios,toast} from '../Header'
 
 const Forgotpassword = () =>{
 
@@ -54,12 +54,22 @@ const Forgotpassword = () =>{
             }
             else
             {
-                setForgot_details({
-                    'email_id':'',
-                });
-                event.target.reset();
-                setOpen(false);
-                (res.data.success) ?  toast.success(res.data.success): toast.error(res.data);
+                if(res.data.success)
+                {
+                    setForgot_details({
+                        'email_id':'',
+                    });
+                    event.target.reset();
+                    setOpen(false);
+
+                    toast.success(res.data.success)
+                }
+                else
+                {
+                    toast.error(res.data,{autoClose: false});
+                }
+              
+               
             }
            
         }).catch((err)=>{

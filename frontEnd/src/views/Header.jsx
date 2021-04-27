@@ -6,19 +6,18 @@ import TextField from '@material-ui/core/TextField'
 import { Checkbox,FormControlLabel} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import { Link,BrowserRouter,Redirect } from 'react-router-dom'
-import React ,{ useState,useEffect } from 'react'
+import React ,{ useState,useEffect,useContext,createContext } from 'react'
 import { Route, Switch } from 'react-router'
 import HomePage from '../views/HomePage'
 import Router from '../config/Router'
 import login_img from '../dist/img/Login.svg'
 import { useLocation,useHistory} from 'react-router'
 import CommonImage from './CommonImage'
-import LoginForm from './LoginForm'
-import RegisterForm from './RegisterForm'
+import LoginForm from './Login/LoginForm'
+import RegisterForm from './Register/RegisterForm'
 import 'intl-tel-input/build/css/intlTelInput.css'
 import intlTelInput from 'intl-tel-input'
 import {util} from 'intl-tel-input/build/js/utils'
-import '../views/RegisterForm'
 import InfoSharpIcon from '@material-ui/icons/InfoSharp'
 import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
@@ -32,14 +31,19 @@ import axios from 'axios'
 import validator from 'validator'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Welcome from './Welcome'
-import Forgotpassword from './Forgotpassword'
-import Activate from './Activate'
-import Reactivate from './Reactivate'
-import Resetpassword from './Resetpassword'
+import Forgotpassword from './Forgot/Forgotpassword'
+import Activate from './Register/Activate'
+import Reactivate from './Register/Reactivate'
+import Resetpassword from './Forgot/Resetpassword'
 import Cookies from 'js-cookie'
 import atob from 'atob'
 import PageNotFound from './PageNotFound'
+import Sidebar from './Complaints/SideBar'
+import avatar from '../dist/img/avatar.png'
+import '../dist/css/sidebar.css'
+import Complaint from './Complaints/Complaint'
+import NewComplaint from './Complaints/NewComplaint'
+
 
 toast.configure()
 
@@ -68,5 +72,6 @@ const colortheme = createMuiTheme({
 
   export {colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,React,Route,Switch,HomePage,Router,
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
-    OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,Welcome,useHistory,
-  Forgotpassword,Activate,Reactivate,Resetpassword,Cookies,atob,Redirect,PageNotFound};
+    OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,useHistory,
+  Forgotpassword,Activate,Reactivate,Resetpassword,Cookies,atob,Redirect,PageNotFound,Sidebar,avatar,Complaint,useContext,
+  createContext,NewComplaint};

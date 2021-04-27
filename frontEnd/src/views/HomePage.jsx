@@ -1,5 +1,5 @@
 
-import {React,CommonImage,useLocation,RegisterForm,LoginForm} from './Header'
+import {React,CommonImage,useLocation,LoginForm,RegisterForm} from './Header'
 
 
 const HomePage = () => {

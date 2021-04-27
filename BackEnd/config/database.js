@@ -2,7 +2,7 @@
 /***************************database connection*********************/
 const mongoose=require('mongoose');
 
-require('../models/registerSchema');
+// require('../models/schemas');
 
 mongoose.connect("mongodb://localhost:27017/prosoft_testdb",{
     useNewUrlParser: true,

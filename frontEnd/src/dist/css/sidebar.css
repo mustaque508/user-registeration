@@ -1,0 +1,50 @@
+/*********************************** sidebar style *************************************/
+
+
+.user-p {
+	padding-left: 10px;
+	padding-top: 25px;
+	margin-bottom: 3rem;
+	text-align: center;
+	margin-top:3rem;
+}
+
+.user-p img {
+	width: 100px;
+	border-radius: 50%;
+}
+
+/* .side-bar{
+	background: #c5d5cb;
+	position: fixed;
+	left: 0;
+	top:0;
+	width: 16%;
+	height: 100%;
+	display: inline;
+} */
+
+
+
+
+
+
+/************************************* header section ***************************/
+
+.u-name {
+	font-size: 20px;
+	/* padding-left: 10px; */
+}
+
+.u-name b {
+	color: #127b8e;
+}
+
+.nav-bar
+{
+	background: white;
+
+}
+
+
+/******************************************************************************/

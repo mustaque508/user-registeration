@@ -1,7 +1,5 @@
-
-
 import{React,Router} from './Header'
-function App() {
+const App =() => {
     return (
         <div >
             <Router/>

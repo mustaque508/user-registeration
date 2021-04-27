@@ -1,7 +1,7 @@
 
 
 import { React,colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,
-    BootstrapTooltip,useState,axios,useHistory,useEffect,Cookies,atob} from './Header'
+    BootstrapTooltip,useState,axios,useHistory,useEffect,Cookies,atob,toast} from '../Header'
 
 // login Component
 const LoginForm = () => {
@@ -79,15 +79,23 @@ const LoginForm = () => {
                 if(res.data.full_name)
                 {
                     // redirect to /welcome with passing username
-                    const {full_name}=res.data;
+                    const {full_name,serial_key}=res.data;
 
                     //set sessionStorage
                     sessionStorage.setItem('uname',full_name);
+                    sessionStorage.setItem('serial_key',serial_key);
 
+                
                     history.push({
                         pathname:'/welcome',
-                        state:full_name
+                        state:{
+                            username:sessionStorage.getItem('uname')
+                        }
                     });
+                }
+                else
+                {
+                    toast.error(res.data,{autoClose: false});
                 }
             }
 
