@@ -102,7 +102,7 @@ event.preventDefault();
           }
           else
           {
-             toast(res.data);
+             toast(res.data,{autoClose:false});
              history.push('/');
           }
         }

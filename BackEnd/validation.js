@@ -173,3 +173,9 @@ exports.checkallvalidation=(props)=>{
 
 }
 
+
+
+//validate complaint
+exports.validate_complaint = (props)=>{
+   return this.validate_pass(props);
+}

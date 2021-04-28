@@ -1,7 +1,7 @@
 /*************************Complaint model**********************************************************/
 
 
-const schemas=require('./schemas');
+const complaintSchema=require('../Schemas/complaintSchema');
 
 const register_model=require('../models/reg_model');
 
@@ -28,7 +28,7 @@ exports.storeData = (req,res,next) =>{
             const full_name=result.full_name; 
 
             //insert complaint into database
-            const newComplaint=new schemas.complaint_details({
+            const newComplaint=new complaintSchema.complaint_details({
                full_name,user_id,complaint_no,serial_key,complaint
             });
 

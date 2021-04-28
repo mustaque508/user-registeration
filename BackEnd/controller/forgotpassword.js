@@ -8,24 +8,8 @@ const validator = require('validator');
 const RegisterSchema=require('../Schemas/RegisterSchema');
 const btoa = require('btoa');
 const jwt = require('jsonwebtoken');
-
-// const validator=require('validator');
-
 const router=Router();
-
-
-
-
-// const transporter=require('../config/email');
-
-
-// const registeration=require('../models/schemas');
-
-
-// const Mymodule=require('../validation/forgot_validation');
-
-// const jwt=require('jsonwebtoken');
-
+const forgot_model=require('../models/forgot_model');
 
 //input validation
 const validation = (req,res,next) =>{
@@ -105,7 +89,7 @@ const sendEmail = (req,res,next) =>{
             email:email_id
         }
 
-        const token=jwt.sign(payload,secret,{expiresIn:'15m'});
+        const token=jwt.sign(payload,secret,{expiresIn:'60m'});
        
 
         //mail body
@@ -142,7 +126,7 @@ const sendEmail = (req,res,next) =>{
 // get data for forgopassword
 router.post('/forgot',validation,sendEmail,(req,res)=>{
     const{email_id}=req.body;
-    res.json({success:`A link to reset your password has been sent to  ${email_id} click that link within 15 minutes`});
+    res.json({success:`A link to reset your password has been sent to  ${email_id} click that link within 1 hour`});
 });
 
 
@@ -178,31 +162,8 @@ const pass_validation = (req,res,next) =>{
 
 
 // reset password
-router.post('/resetpassword',pass_validation,(req,res)=>{
-    try
-    {
-        //get data
-        const {activation_code}=req.body;
-        const {password} =req.body.password_details;
-
-        if(!validator.isEmpty(activation_code))
-        {
-            //update password in database
-            RegisterSchema.registeration.updateOne({activation_code},{$set :{password:btoa(password)}})
-            .then((updated)=>{
-                    (updated.nModified === 1) ? res.json({success:'Your password is updated successfully'}) :res.send('Nothing has changed in password.');
-    
-                    
-            }).catch((err)=>{
-                    res.send(`Sorry!!!! unable to load your request..... please contact admin :${err}`);
-            });
-        }
-        
-    }
-    catch(err)
-    {
-        res.send(`got error in route[/resetpassword] : ${err}`); 
-    }
+router.post('/resetpassword',pass_validation,forgot_model.updateData,(req,res)=>{
+    res.json({success:'Your password is updated successfully'});
 });
 
 module.exports=router;

@@ -3,9 +3,9 @@
 // Router file
 
 import {React,Route,Switch,HomePage,Forgotpassword,Reactivate,
-        Resetpassword,useLocation,Redirect,useHistory,PageNotFound,Activate} from '../views/Header'
+        Resetpassword,useLocation,Redirect,useHistory,PageNotFound,Activate,Welcome} from '../views/Header'
 
-import Welcome from '../Welcome'
+
 
 const Router = () => {
 
@@ -26,9 +26,12 @@ const Router = () => {
                     {(history.action === "PUSH") ? <HomePage/> : <Redirect to="/" /> }
                 </Route>
                 
-                
                 <Route exact path="/welcome">
-                    {(username) ? <Welcome username={username}/> : <Redirect to="/" /> }
+                    {(username) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}/> : <Redirect to="/" /> }
+                </Route>
+
+                <Route exact path="/complaints">
+                    {(sessionStorage.getItem('uname')) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}/> : <Redirect to="/" /> }
                 </Route>
 
                 <Route exact path="/forgot">
