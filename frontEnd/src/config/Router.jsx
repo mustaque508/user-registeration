@@ -15,7 +15,8 @@ const Router = () => {
 
     // get username from useHistory hook
     const username=location.state;
-    
+
+
     return (
         <div>
             <Switch>
@@ -27,11 +28,11 @@ const Router = () => {
                 </Route>
                 
                 <Route exact path="/welcome">
-                    {(username) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}/> : <Redirect to="/" /> }
+                    {(username) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')} /> : <Redirect to="/" /> }
                 </Route>
 
                 <Route exact path="/complaints">
-                    {(sessionStorage.getItem('uname')) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}/> : <Redirect to="/" /> }
+                    {(sessionStorage.getItem('uname')) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}  /> : <Redirect to="/" /> }
                 </Route>
 
                 <Route exact path="/forgot">

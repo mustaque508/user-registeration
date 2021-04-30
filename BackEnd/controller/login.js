@@ -7,7 +7,8 @@ const btoa = require('btoa');
 const validations=require('../validation');
 const RegisterSchema=require('../Schemas/RegisterSchema');
 const validator = require('validator');
-
+const log_model=require('../models/log_model');
+const axios = require('axios');
 
 //cookie expiry for 1 day
 const REMEMBERME_COOKIE_EXPIRY=new Date(Date.now()+86400000);
@@ -119,22 +120,16 @@ const validation = (req,res,next)=>{
 
 
 //login
-router.post('/login',validation,setCookie,(req,res)=>{
-
-        const {email_id}=req.body;
-
-        //get name based on email-id from database
-        RegisterSchema.registeration.findOne({email_id})
-         .then((data)=>{
-                 if(data)
-                 { 
-                     const {full_name,serial_key}=data;
-                     res.json({full_name,serial_key});
-
-                 }
-
-         }).catch((err)=>{
-               res.send(`Got Error when user login : ${err}`);
-         });
+router.post('/login',validation,setCookie,log_model.getData,(req,res)=>{
+       
+        const {full_name,serial_key}=res.locals;
+        res.json({full_name,serial_key});
 });
+
+
+
+
+
+
+
 module.exports = router;

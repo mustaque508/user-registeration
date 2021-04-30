@@ -81,6 +81,7 @@ const LoginForm = () => {
                     // redirect to /welcome with passing username
                     const {full_name,serial_key}=res.data;
 
+
                     //set sessionStorage
                     sessionStorage.setItem('uname',full_name);
                     sessionStorage.setItem('serial_key',serial_key);

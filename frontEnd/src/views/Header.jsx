@@ -41,11 +41,12 @@ import PageNotFound from './PageNotFound'
 import Sidebar from './Complaints/SideBar'
 import avatar from '../dist/img/avatar.png'
 import '../dist/css/sidebar.css'
-import Complaint from './Complaints/Complaint'
 import NewComplaint from './Complaints/NewComplaint'
 import Welcome from './Complaints/Welcome'
 import SideBar from './Complaints/SideBar'
 import WelcomeBar from './Complaints/WelcomeBar'
+import ComplaintView from './Complaints/ComplaintView'
+import '../dist/css/complaint.css'
 
 
 toast.configure()
@@ -76,5 +77,5 @@ const colortheme = createMuiTheme({
   export {colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,React,Route,Switch,HomePage,Router,
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
     OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,useHistory,
-  Forgotpassword,Activate,Reactivate,Resetpassword,Cookies,atob,Redirect,PageNotFound,Sidebar,avatar,Complaint,useContext,
-  createContext,NewComplaint,Welcome,SideBar,WelcomeBar};
+  Forgotpassword,Activate,Reactivate,Resetpassword,Cookies,atob,Redirect,PageNotFound,Sidebar,avatar,useContext,
+  createContext,NewComplaint,Welcome,SideBar,WelcomeBar,ComplaintView};

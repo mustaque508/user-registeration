@@ -31,4 +31,11 @@ router.post('/storecomplaint',validation,myModules.storeData,(req,res)=>{
 });
 
 
+
+//fetch complaints
+router.post('/getcomplaints',myModules.fetchComplaints,(req,res)=>{
+       const {complaints}=res.locals;
+       res.json({complaints});
+});
+
 module.exports = router;

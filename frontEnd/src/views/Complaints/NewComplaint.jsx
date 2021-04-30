@@ -83,9 +83,9 @@ const NewComplaint = (props) =>{
 
     return (
         <>
-            <div className="card shadow-sm p-3 mb-5 bg-white rounded">
+            <div className="card shadow p-3 mb-5 bg-white rounded">
                 <div className="card-body">
-                    <h5 className="card-title text-center">Add New Complaint</h5>
+                <h3 className="text-left font-weight-bold card-title">Add New Complaint</h3>
 
                     <form onSubmit={submit} method="POST" className="form-group mt-3" id="submit" autoComplete="off">
 

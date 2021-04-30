@@ -5,6 +5,7 @@ const complaintSchema=require('../Schemas/complaintSchema');
 
 const register_model=require('../models/reg_model');
 
+
 //store complaint details
 exports.storeData = (req,res,next) =>{
 
@@ -49,4 +50,23 @@ exports.storeData = (req,res,next) =>{
    catch(err){
       res.send(`got error in model[exports.storeData(complaint)] : ${err}`);
    }
+}
+
+
+
+// fetch all complaints based on _id
+exports.fetchComplaints =async (req,res,next)=>{
+      try
+      {
+         const {serial_key}=req.body;
+         const result =await complaintSchema.complaint_details.find({serial_key}).sort({complaint_date_time:-1})
+         res.locals.complaints=result;
+         next();
+      }
+      catch(err){
+         res.send(`got error in fetchComplaints : ${err}`);
+      }
+      
+
+      
 }
