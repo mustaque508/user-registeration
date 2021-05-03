@@ -1,0 +1,37 @@
+
+.play-list{
+    display: block;
+    height:382px;
+    overflow-y : scroll;
+}
+
+.play-list::-webkit-scrollbar-track
+{
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+   background-color: #CCCCCC;
+   box-shadow:inset 0 0 6px rgba(0,0,0,0.6);
+
+}
+.play-list::-webkit-scrollbar-track
+{
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+   background-color: #CCCCCC;
+   box-shadow:inset 0 0 6px rgba(0,0,0,0.6);
+}
+
+.play-list::-webkit-scrollbar
+{
+   width: 5px;
+   background-color: #F5F5F5;
+}
+
+.play-list::-webkit-scrollbar-thumb
+{
+   background-color: #FFF;
+   background-image: -webkit-linear-gradient(90deg,
+                                             rgb(0, 0, 0) 0%,
+                                             rgb(0, 0, 0) 25%,
+                                             transparent 100%,
+                                             rgba(0, 0, 0, 1) 75%,
+                                             transparent)
+}

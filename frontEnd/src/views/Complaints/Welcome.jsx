@@ -1,11 +1,12 @@
 
 /****************************************WELCOME **************************************************** */
 
-import {React,SideBar,WelcomeBar,NewComplaint,ComplaintView} from '../Header'
+import {React,SideBar,WelcomeBar,Comaplaints,useLocation,Videos} from '../Header'
 
 
 const Welcome = (props) => {
-        
+    
+      const location =useLocation();
     return (
         <div className="container-fluid">
             <div className="row">
@@ -24,18 +25,14 @@ const Welcome = (props) => {
                         </div>
                     </div>
 
-                    <div className="row">
-
-                        {/* New Complaint */}
-                        <div className="col-md-5 mt-2">
-                            <NewComplaint serial_key={props.serial_key}/>
-                        </div>
-
-                        {/* view Complaints */}
-                        <div className="col-md-7 mt-2">
-                            <ComplaintView serial_key={props.serial_key} />
-                        </div>
-
+                    <div className="row"> 
+                    {
+                        (location.pathname === "/welcome")
+                        ? <Comaplaints serial_key={props.serial_key} /> : 
+                        (location.pathname === "/complaints") ? <Comaplaints serial_key={props.serial_key} />
+                        :<Videos/>
+                    }   
+                        
                     </div>
                 </div>
             </div>

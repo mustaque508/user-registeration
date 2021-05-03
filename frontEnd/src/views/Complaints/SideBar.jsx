@@ -14,6 +14,9 @@ const sideBar =  () => {
                 <li>
                 <Link to="/complaints">Complaints</Link> 
                 </li>
+                <li>
+                <Link to="/videos">Videos</Link>
+                </li>
             </ul>
         </div>
     )

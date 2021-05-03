@@ -17,7 +17,6 @@ import SearchIcon from '@material-ui/icons/Search';
     //complaints
     const [complaints,setComplaints]=useState([]);
 
-    let searchArray=[];
 
     //set serial_key
     const[serial_key]=useState(props.serial_key);
@@ -40,8 +39,7 @@ import SearchIcon from '@material-ui/icons/Search';
     
     useEffect(()=>{
         fetchcomplaints();
-    });
-
+    },[fetchcomplaints]);
 
     //refresh function
     const refresh_component = () =>{
@@ -57,8 +55,6 @@ import SearchIcon from '@material-ui/icons/Search';
         let newArray=complaints.filter((searchvalue)=>{
             return searchvalue.complaint.toLowerCase().indexOf(event.target.value)!== -1;
         });
-
-        console.log(newArray);
         setComplaints(newArray);
     }
 

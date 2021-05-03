@@ -35,6 +35,10 @@ const Router = () => {
                     {(sessionStorage.getItem('uname')) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}  /> : <Redirect to="/" /> }
                 </Route>
 
+                <Route exact path="/videos">
+                    {(sessionStorage.getItem('uname')) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}  /> : <Redirect to="/" /> }
+                </Route>
+
                 <Route exact path="/forgot">
                     {(history.action === "PUSH")? <Forgotpassword/> : <Redirect to="/" /> }
                 </Route>
