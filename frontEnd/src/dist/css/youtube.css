@@ -1,0 +1,144 @@
+
+
+/* common styles */
+
+/* .youtube-section,
+.youtube-section .iframe-button,
+.youtube-section #forward-button,
+.youtube-section #backword-button,
+#controls
+{
+  position:absolute;
+}
+
+.carousel-inner .card img,
+.youtube-section .iframe-button,
+.youtube-section .outter-play
+{
+  cursor: pointer;
+}
+
+.youtube-section .iframe-button,
+.youtube-section .outter-play{
+  border:2px solid white;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.youtube-section #forward-button,
+.youtube-section #backword-button,
+#controls
+{
+  background-color: transparent;
+  visibility:hidden;
+}
+
+.youtube-section iframe,
+.youtube-section .card,
+#controls
+{
+  border-radius:10px;
+}
+
+.youtube-section iframe,
+#progressBar
+{
+  width:100%;
+} */
+
+/************************************youtbe player style**********************************/  
+
+.youtube-section #ytplayer{
+  pointer-events: none;
+  width:100% !important;
+  height: 90% !important;
+  position: relative;
+}
+
+/*****************  youtube controlls *********************************/
+
+.middlecontrols
+{
+  position: absolute;
+  width:100%;
+  top:45%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  
+}
+
+/* .bottomcontrols
+{
+  position: absolute;
+  width:100%;
+  bottom:10%;
+  left:50%;
+  transform: translate(-50%,-50%);
+} */
+
+.middlecontrols .row
+{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.middlecontrols .forward-button,
+.middlecontrols .backword-button,
+.bottomcontrols .prev-button,
+.bottomcontrols .next-button,
+.bottomcontrols .play-button
+{
+  /* color: rgba(0,0,0,0.6); */
+  color: black;
+}
+
+
+.bottomcontrols .row .buttons .row
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+/* ************************ Youtube Playlist************************************* */
+
+
+.play-list{
+  display: block;
+  height:420px;
+  overflow-y : scroll;
+}
+
+.play-list::-webkit-scrollbar-track
+{
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+ background-color: #CCCCCC;
+ box-shadow:inset 0 0 6px rgba(0,0,0,0.6);
+
+}
+.play-list::-webkit-scrollbar-track
+{
+ -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+ background-color: #CCCCCC;
+ box-shadow:inset 0 0 6px rgba(0,0,0,0.6);
+}
+
+.play-list::-webkit-scrollbar
+{
+ width: 5px;
+ background-color: #F5F5F5;
+}
+
+.play-list::-webkit-scrollbar-thumb
+{
+ background-color: #FFF;
+ background-image: -webkit-linear-gradient(90deg,
+                                           rgb(0, 0, 0) 0%,
+                                           rgb(0, 0, 0) 25%,
+                                           transparent 100%,
+                                           rgba(0, 0, 0, 1) 75%,
+                                           transparent)
+}

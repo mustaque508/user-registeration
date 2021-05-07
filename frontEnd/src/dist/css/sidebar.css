@@ -1,5 +1,12 @@
 /*********************************** sidebar style *************************************/
 
+.side-bar li a{
+	text-decoration: none;
+}
+
+.side-bar li a:hover{
+	text-decoration: none;
+}
 
 .user-p {
 	padding-left: 10px;
@@ -16,25 +23,107 @@
 
 
 
+.side-bar{
+	background: #c5d5cb;
+	position: fixed;
+	left: 0;
+	top:0;
+	width: 16%;
+	height: 100%;
+	display: inline;
+}
+
+
+.side-bar ul {
+	margin-top: 20px;
+
+}
+
+
+.side-bar ul li {
+	font-size: 1.2rem;
+	padding: 15px 0px;
+	padding-left: 20px;
+	-webkit-transition: 500ms background;
+	-o-transition: 500ms background;
+	transition: 500ms background;
+	white-space: nowrap;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	font-weight: bolder;
+	
+}
+
+.side-bar ul li:hover {
+	background: #127b8e;
+	color:white;
+}
+.side-bar ul li:hover a{
+	color:white;
+}
+
+.side-bar ul li a {
+	text-decoration: none;
+	color:black;
+	cursor: pointer;
+	letter-spacing: 1px;
+} 
 
 
 
 /************************************* header section ***************************/
 
-.u-name {
+.WelcomeBar .u-name {
 	font-size: 20px;
-	/* padding-left: 10px; */
 }
 
-.u-name b {
+.WelcomeBar .u-name b {
 	color: #127b8e;
 }
 
-.nav-bar
-{
+.WelcomeBar .nav-bar{
+	width:103.5%;
+	margin-left:-0.5rem;
 	background: white;
-
+	top:0;
+	position:fixed;
+}
+#checkbox,#navbtn{
+	display:none;
+	cursor:pointer;
 }
 
 
 /******************************************************************************/
+
+/*********************************responsive code ****************************************/
+
+/* Custom, iPhone Retina start */ 
+
+@media screen and (min-width:320px) and (max-width:479px)
+{
+	.side-bar{
+		display: none;
+	}
+
+    #navbtn{
+		display:inline !important;
+		margin-left:1rem;
+		margin-top: -0.2rem;
+	}
+
+	.u-name{
+		font-size: 16px;
+		margin-left: 0.5rem;
+	}
+
+
+	
+}
+
+
+
+
+
+/*****************************************************************************/

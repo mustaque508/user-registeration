@@ -12,7 +12,7 @@ const Welcome = (props) => {
             <div className="row">
 
                 {/* sidebar */}
-                <div className="col-xl-2 col-md-3 col-sm-12 border border-primary">
+                <div className="col-xl-2 col-md-3 col-sm-12">
                     <SideBar/>
                 </div>
 
@@ -25,7 +25,7 @@ const Welcome = (props) => {
                         </div>
                     </div>
 
-                    <div className="row"> 
+                    <div className="row" style={{'marginTop':'5rem'}}> 
                     {
                         (location.pathname === "/welcome")
                         ? <Comaplaints serial_key={props.serial_key} /> : 

@@ -1,16 +1,21 @@
 /************************************************** Videos *******************************************/
 
-import {React,Iframe,playlist_data} from '../Header'
+import {React,playlist_data, useState} from '../Header'
+import ReactPlayer from 'react-player'
+import PlayerControls from '../youtubeVideos/PlayerControls'
+
 
  const Videos = () => {
 
-
     //change URL based on user click
     const changeIframe = (event) =>{
-        console.log(event.target.getAttribute('data-url'));
+      let newSRC =event.target.getAttribute('data-url');
+        document.getElementById("ytplayer").url=newSRC;
     }
+
+    
     return (
-        <div className="container">
+        <div className="container youtube-section">
             <div className="row">
                 <div className="col-sm-12">
                     <div className="card video-card shadow p-3 mb-5 bg-white rounded">
@@ -21,20 +26,18 @@ import {React,Iframe,playlist_data} from '../Header'
 
                                     {/* video player */}
                                     <div className="col-md-8">
-
-                                        <div className="embed-responsive embed-responsive-16by9">
-                                            <Iframe url="https://www.youtube-nocookie.com/embed/Yhs_3eoIHjk?enablejsapi=1&vq=hd1080&modestbranding=1&fs=0&rel=0&controls=0&listType=playlist&list=PL7Zm4iklj7qw18z6h8VRtVSuFZ1QtwLcN" modestbranding="0"  controls="0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allownetworking="internal"/>
-                                        </div>
+                                        <ReactPlayer id="ytplayer" playing={true} url={process.env.REACT_APP_YOUTUBE_URL}/>
+                                        <PlayerControls/>
                                     </div>
 
-                                    {/* Enterprise Edition playlist */}
-                                    <div className="col-sm">
+                                 
+                                     <div className="col-md">
                                         <div className="card shadow-sm p-3 mb-5 bg-white rounded play-list">
                                             {
                                                 playlist_data.map((data,index)=>{
                                                     return(
                                                         <div className="media" key={index}>
-                                                            <img src={data.src} width="40%" height="40%"  title="play video" id="next-play"  alt={data.alt} className="mr-2 img-thumbnail"  data-url={data.url} onClick={changeIframe}/>
+                                                            <img src={data.src} width="35%" height="35%" data-url={data.url}  title="play video" id="next-play"  alt={data.alt} className="mr-2 img-thumbnail" onClick={changeIframe} style={{'cursor':'pointer'}}/>
                                                             <div className="media-body">
                                                                 <span className="mt-0">{data.title}</span>
                                                             </div>

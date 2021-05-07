@@ -14,7 +14,7 @@ const playlist_data =[
     {
         'src':'http://img.youtube.com/vi/hlAMpHUV4lU/1.jpg',
         'url':'https://www.youtube-nocookie.com/embed/hlAMpHUV4lU?enablejsapi=1&vq=hd1080&modestbranding=1&fs=0&rel=0&controls=0&listType=playlist&list=PL7Zm4iklj7qw18z6h8VRtVSuFZ1QtwLcN',
-        'title':'TDR Import of Multiple Areas at One Time<',
+        'title':'TDR Import of Multiple Areas at One Time',
         'alt':'video2.jpg'
     },
 

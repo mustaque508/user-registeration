@@ -50,9 +50,14 @@ import '../dist/css/complaint.css'
 import Comaplaints from './Complaints/Complaints'
 import Videos from './youtubeVideos/Videos'
 import Iframe from 'react-iframe'
-import playlist_data from './youtubeVideos/palylist'
-import videostyle from '../dist/css/videos.css'
-
+import playlist_data from './youtubeVideos/playlist'
+import ForumIcon from '@material-ui/icons/Forum';
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary'
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined'
+import 'animate.css/animate.min.css'
+import '@fortawesome/fontawesome-free/css/all.css'
+import $ from 'jquery'
+import '../dist/css/youtube.css'
 toast.configure()
 
 // color theme for button [login and submit button]
@@ -82,4 +87,5 @@ const colortheme = createMuiTheme({
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
     OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,useHistory,
   Forgotpassword,Activate,Reactivate,Resetpassword,Cookies,atob,Redirect,PageNotFound,Sidebar,avatar,useContext,
-  createContext,NewComplaint,Welcome,SideBar,WelcomeBar,ComplaintView,Comaplaints,Videos,Iframe,playlist_data,videostyle};
+  createContext,NewComplaint,Welcome,SideBar,WelcomeBar,ComplaintView,Comaplaints,Videos,Iframe,playlist_data
+  ,ForumIcon,VideoLibraryIcon,ExitToAppOutlinedIcon,$};
