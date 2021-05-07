@@ -28,6 +28,7 @@
     "react-scripts": "4.0.3",
     "react-toastify": "^7.0.3",
     "react-youtube": "^7.13.1",
+    "screenfull": "^5.1.0",
     "validator": "^13.5.2",
     "web-vitals": "^1.1.1",
     "youtube-iframe": "^1.0.3",

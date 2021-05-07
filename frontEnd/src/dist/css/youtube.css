@@ -67,14 +67,16 @@
   
 }
 
-/* .bottomcontrols
+.bottomcontrols
 {
   position: absolute;
   width:100%;
-  bottom:10%;
+  bottom:4%;
   left:50%;
   transform: translate(-50%,-50%);
-} */
+}
+
+
 
 .middlecontrols .row
 {
@@ -84,18 +86,20 @@
   align-items: center;
 }
 
-.middlecontrols .forward-button,
-.middlecontrols .backword-button,
-.bottomcontrols .prev-button,
-.bottomcontrols .next-button,
-.bottomcontrols .play-button
+.controlwrapper .button
 {
-  /* color: rgba(0,0,0,0.6); */
-  color: black;
+  color:#828AA5;
+
 }
 
+.controlwrapper .button :hover{
+  color:lightgray;
+}
 
-.bottomcontrols .row .buttons .row
+.middlecontrols .row .play-button :hover {
+  color:red;
+}
+.bottomcontrols .row .buttons
 {
     display: flex;
     flex-direction: row;

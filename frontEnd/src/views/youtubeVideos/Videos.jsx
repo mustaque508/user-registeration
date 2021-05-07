@@ -1,19 +1,130 @@
 /************************************************** Videos *******************************************/
 
-import {React,playlist_data, useState} from '../Header'
+import {React,playlist_data,useState} from '../Header'
 import ReactPlayer from 'react-player'
 import PlayerControls from '../youtubeVideos/PlayerControls'
+import {useRef} from 'react'
+import screenfull from 'screenfull'
 
 
+//format duration and currentTime
+const format =(seconds)=>{
+    if(isNaN(seconds)){
+        return "00:00";
+    }
+
+    const date=new Date(seconds*1000);
+    const hh=date.getUTCHours();
+    const mm=date.getUTCMinutes();
+    const ss=date.getUTCSeconds().toString().padStart(2,"0");
+    if(hh){
+        return `${hh}:${mm.toString().padStart(2,"0")}:${ss}`
+    }
+
+    return `${mm}:${ss}`;
+}
+
+let count=0;
  const Videos = () => {
 
     //change URL based on user click
     const changeIframe = (event) =>{
-      let newSRC =event.target.getAttribute('data-url');
-        document.getElementById("ytplayer").url=newSRC;
+        const newSRC=event.target.getAttribute("data-url");
+        document.getElementById("ytplayer").firstChild.firstChild.src=newSRC;
     }
 
+    //player options initial states
+    const [player,setPlayer]=useState({
+        playing:false,
+        muted:false,
+        played:0,
+        seeking:false
+    });
+
+    const playerRef=useRef(null);
+    const playerContainerRef=useRef(null);
+    const controlsRef=useRef(null);
     
+    const{playing,muted,played,seeking}=player;
+
+    const currentTime= playerRef.current ? playerRef.current.getCurrentTime(): "00:00";
+    const duration=playerRef.current ? playerRef.current.getDuration(): "00:00";
+
+    const elapsedTime=format(currentTime);
+    const totalDuration=format(duration);
+
+
+    //play and pause Video
+    const onPlayPause = ()=>{
+        setPlayer({
+            ...player,
+            playing : !player.playing
+        });
+    }
+
+    //rewind 10 sec
+    const onRewind = () =>{
+        playerRef.current.seekTo(playerRef.current.getCurrentTime()-10); 
+    }
+
+    //Forward 10 sec
+    const onForward = () =>{
+        playerRef.current.seekTo(playerRef.current.getCurrentTime()+10); 
+    }
+
+    //on mute
+    const onMute = () =>{
+        setPlayer({
+            ...player,muted :!player.muted
+        })
+    }
+
+    //full screen
+    const onToggleFullScreen = () =>{
+        screenfull.toggle(playerContainerRef.current);
+    }
+    
+    //progress bar
+    const onProgress = (changestate) =>{
+
+        if(count>3){
+            controlsRef.current.style.visibility="hidden";
+            count=0;
+        }
+
+        if(controlsRef.current.style.visibility ==="visible"){
+            ++count;
+        }
+
+        if(!seeking){
+            setPlayer({...player,...changestate}); 
+        }
+    
+
+    }
+
+    //progress bar function
+    const onSeekChange =(e,newValue) =>{
+        setPlayer({...player, played:parseFloat(newValue/100)}); 
+    }
+
+    //progress bar function
+    const onSeekMouseDown =(e) =>{
+        setPlayer({...player,seeking:true});
+    } 
+
+    //progress bar function
+    const onSeekMouseUp =(e,newValue) =>{
+        setPlayer({...player,seeking:false});
+        playerRef.current.seekTo(newValue/100);
+    } 
+
+    //hide controls when video playing
+    const onMouseMove=()=>{
+        controlsRef.current.style.visibility="visible";
+        count=0;
+    }
+
     return (
         <div className="container youtube-section">
             <div className="row">
@@ -25,9 +136,32 @@ import PlayerControls from '../youtubeVideos/PlayerControls'
                                 <div className="row">
 
                                     {/* video player */}
-                                    <div className="col-md-8">
-                                        <ReactPlayer id="ytplayer" playing={true} url={process.env.REACT_APP_YOUTUBE_URL}/>
-                                        <PlayerControls/>
+                                    <div className="col-md-8" ref={playerContainerRef} onMouseMove={onMouseMove} >
+                                        <ReactPlayer 
+                                            muted={muted}
+                                            ref={playerRef} 
+                                            playing={playing} 
+                                            id="ytplayer" 
+                                            url={process.env.REACT_APP_YOUTUBE_URL}
+                                            onProgress={onProgress}
+                                            
+                                        />
+                                        <PlayerControls 
+                                            ref={controlsRef}
+                                            onMute={onMute}
+                                            muted={muted} 
+                                            onPlayPause={onPlayPause} 
+                                            playing={playing}
+                                            onRewind={onRewind} 
+                                            onForward={onForward}
+                                            onToggleFullScreen={onToggleFullScreen}
+                                            played={played}
+                                            onSeek={onSeekChange}
+                                            onSeekMouseUp={onSeekMouseUp}
+                                            onSeekMouseDown={onSeekMouseDown}
+                                            elapsedTime={elapsedTime}
+                                            totalDuration={totalDuration}
+                                        />
                                     </div>
 
                                  
