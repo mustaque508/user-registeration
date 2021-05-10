@@ -14,7 +14,7 @@ import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import PropTypes from 'prop-types';
 import {forwardRef} from 'react'
 
-const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMute,muted,onToggleFullScreen,played,onSeekMouseUp,onSeekMouseDown,onSeek,elapsedTime,totalDuration},ref)=>{
+const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMute,muted,onToggleFullScreen,played,onSeekMouseUp,onSeekMouseDown,onSeek,elapsedTime,totalDuration,playNextvideo},ref)=>{
 
 
     function ValueLabelComponent(props) {
@@ -47,7 +47,7 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
                     {/* play button */}
                     <div className="play-button" style={{'color':'red'}} onClick={onPlayPause}>
                         {
-                            playing ? <PauseCircleFilledIcon style={{'fontSize':'60px'}} /> :  <i class="fab fa-youtube fa-4x"></i>
+                            playing ? <PauseCircleFilledIcon style={{'fontSize':'60px'}} /> :  <i className="fab fa-youtube fa-4x"></i>
                         }
                    
                     </div>
@@ -95,7 +95,7 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
                                     </div>
 
                                     {/* next button */}
-                                    <div className="button">
+                                    <div className="button" onClick={playNextvideo}>
                                         <SkipNextIcon/>
                                     </div>
 

@@ -27,19 +27,14 @@ const format =(seconds)=>{
 let count=0;
  const Videos = () => {
 
-    //change URL based on user click
-    const changeIframe = (event) =>{
-        const newSRC=event.target.getAttribute("data-url");
-        document.getElementById("ytplayer").firstChild.firstChild.src=newSRC;
-    }
-
-    //player options initial states
-    const [player,setPlayer]=useState({
+      //player options initial states
+      const [player,setPlayer]=useState({
         playing:false,
         muted:false,
         played:0,
         seeking:false
     });
+
 
     const playerRef=useRef(null);
     const playerContainerRef=useRef(null);
@@ -53,6 +48,15 @@ let count=0;
     const elapsedTime=format(currentTime);
     const totalDuration=format(duration);
 
+
+    //change URL based on user click
+    const changeIframe = (event) =>{
+        const newSRC=event.target.getAttribute("data-url");
+        document.getElementById("ytplayer").firstChild.firstChild.src=newSRC;
+    }
+
+  
+  
 
     //play and pause Video
     const onPlayPause = ()=>{
@@ -125,6 +129,10 @@ let count=0;
         count=0;
     }
 
+    //play next video
+    const playNextvideo = () =>{
+        console.log(playerRef.current.props.url);
+    }
     return (
         <div className="container youtube-section">
             <div className="row">
@@ -142,9 +150,9 @@ let count=0;
                                             ref={playerRef} 
                                             playing={playing} 
                                             id="ytplayer" 
-                                            url={process.env.REACT_APP_YOUTUBE_URL}
+                                            url="https://www.youtube-nocookie.com/embed/Yhs_3eoIHjk?enablejsapi=1&vq=hd1080&modestbranding=1&fs=0&rel=0&controls=0&listType=playlist&list=PL7Zm4iklj7qw18z6h8VRtVSuFZ1QtwLcN"
                                             onProgress={onProgress}
-                                            
+
                                         />
                                         <PlayerControls 
                                             ref={controlsRef}
@@ -161,6 +169,7 @@ let count=0;
                                             onSeekMouseDown={onSeekMouseDown}
                                             elapsedTime={elapsedTime}
                                             totalDuration={totalDuration}
+                                            playNextvideo={playNextvideo}
                                         />
                                     </div>
 
@@ -171,7 +180,7 @@ let count=0;
                                                 playlist_data.map((data,index)=>{
                                                     return(
                                                         <div className="media" key={index}>
-                                                            <img src={data.src} width="35%" height="35%" data-url={data.url}  title="play video" id="next-play"  alt={data.alt} className="mr-2 img-thumbnail" onClick={changeIframe} style={{'cursor':'pointer'}}/>
+                                                            <img src={data.src} width="35%" height="35%"  data-url={data.url}  title="play video" id="next-play"  alt={data.alt} className="mr-2 img-thumbnail" onClick={changeIframe} style={{'cursor':'pointer'}}/>
                                                             <div className="media-body">
                                                                 <span className="mt-0">{data.title}</span>
                                                             </div>

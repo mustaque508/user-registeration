@@ -13,7 +13,7 @@ const PageNotFound = () => {
 
                                 {/* GoBack button */}
                                 <MuiThemeProvider theme={colortheme}>
-                                <div class="text-center"> 
+                                <div className="text-center"> 
                                     <Button  type="button" variant="contained" color="primary"><Link to='/' className="text-white text-decoration-none">go back</Link></Button>
                                 </div>
                                 </MuiThemeProvider>

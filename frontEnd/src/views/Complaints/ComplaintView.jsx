@@ -13,7 +13,6 @@ import SearchIcon from '@material-ui/icons/Search';
 
  const ComplaintView = (props) => {
 
-
     //complaints
     const [complaints,setComplaints]=useState([]);
 
@@ -21,6 +20,8 @@ import SearchIcon from '@material-ui/icons/Search';
     //set serial_key
     const[serial_key]=useState(props.serial_key);
 
+    //search array
+    const [searchArray,setSearchArray]=useState([]);
 
 
     //get all complaints based on serial_key
@@ -29,6 +30,7 @@ import SearchIcon from '@material-ui/icons/Search';
             axios.post('/getcomplaints',{serial_key})
             .then(res=>{
                 setComplaints(res.data.complaints);
+                setSearchArray(res.data.complaints);
             }).catch((err)=>{
                 console.log(`got error when fetching complaints : ${err}`);
             })
@@ -52,9 +54,14 @@ import SearchIcon from '@material-ui/icons/Search';
 
     //search function
     const search = (event)=>{
-        let newArray=complaints.filter((searchvalue)=>{
-            return searchvalue.complaint.toLowerCase().indexOf(event.target.value)!== -1;
+        let newArray=searchArray.filter((searchvalue)=>{
+            return( 
+                searchvalue.complaint.toLowerCase().indexOf(event.target.value)!== -1 ||
+                searchvalue.complaint_no.indexOf(event.target.value)!== -1 ||
+                searchvalue.complaint_date_time.toLowerCase().indexOf(event.target.value)!== -1
+            )
         });
+
         setComplaints(newArray);
     }
 
