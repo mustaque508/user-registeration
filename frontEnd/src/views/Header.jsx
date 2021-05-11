@@ -22,7 +22,6 @@ import InfoSharpIcon from '@material-ui/icons/InfoSharp'
 import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import ReactDOM from 'react-dom'
-import '../dist/css/index.css'
 import App from '../views/App'
 import { plugin_for_contact} from '../dist/plugins/Countrycode'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -58,6 +57,7 @@ import 'animate.css/animate.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import $ from 'jquery'
 import '../dist/css/youtube.css'
+import '../dist/css/loginForm.css'
 toast.configure()
 
 // color theme for button [login and submit button]

@@ -110,7 +110,7 @@ const LoginForm = () => {
 
     return (
         <div>
-            <div className="card border-0" style={{'marginTop':'5rem'}}>
+            <div className="card border-0 login-form" style={{'marginTop':'5rem'}}>
                 <div className="card-body">
 
                      {/* card title */}
@@ -133,13 +133,13 @@ const LoginForm = () => {
                         
                         {/* checkbox */}
                         <div className="row ml-0">
-                            <div className="remember_me col p-0">
+                            <div className="remember_me col-6 p-0">
                             <MuiThemeProvider theme={colortheme}>
-                                <FormControlLabel control={<Checkbox color="primary" id="remember_me" name="remember_me" checked={login_details.remember_me} onChange={inputEvent} value={remember_me} /> } label="Remember Me"/>
+                                <FormControlLabel  control={<Checkbox color="primary" id="remember_me" className="checkbox" name="remember_me" checked={login_details.remember_me} onChange={inputEvent} value={remember_me} /> } label={<span>Remember Me</span>}/>
                             </MuiThemeProvider>
                             </div>
-                            <div className="forgot_pass col p-0 ">
-                                <Link to="/forgot" className="float-right mr-3" style={{'marginTop':'0.5rem'}}>Forgot Password ?</Link>
+                            <div className="forgot_pass col  d-flex justify-content-end mt-2">
+                                <Link to="/forgot"> Forgot Password ?</Link>
                             </div>
                         </div>
 
