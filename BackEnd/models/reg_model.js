@@ -51,7 +51,7 @@ exports.checkActivationcode = (req,res,next)=>{
         {
             RegisterSchema.registeration.findOne({activation_code})
             .then((exist)=>{
-                (exist) ? next() : res.send(`unable to load your request wrong actiation code`);
+                (exist) ? next() : res.send(`unable to load your request wrong activation code`);
 
             }).catch((err)=>{
                 res.send(`Sorry!!!! unable to load your request..... please contact admin`);

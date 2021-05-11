@@ -2,8 +2,7 @@
 
 // Router file
 
-import {React,Route,Switch,HomePage,Forgotpassword,Reactivate,
-        Resetpassword,useLocation,Redirect,useHistory,PageNotFound,Activate,Welcome} from '../views/Header'
+import {React,Route,Switch,HomePage,Forgotpassword,Resetpassword,useLocation,Redirect,useHistory,PageNotFound,Activate,Welcome} from '../views/Header'
 
 
 
@@ -45,7 +44,7 @@ const Router = () => {
                 
                 <Route exact path="/activate" component={Activate}></Route> 
 
-                <Route exact path="/reactivate" component={Reactivate}></Route> 
+                <Route exact path="/reactivate" component={Activate}></Route> 
 
                 <Route exact path="/change-password/:id/:token" component={Resetpassword}></Route> 
 

@@ -20,7 +20,6 @@
     "moment": "^2.29.1",
     "mongoose": "^5.12.3",
     "nodemailer": "^6.5.0",
-    "sessionstorage": "^0.1.0",
     "validator": "^13.5.2"
   }
 }
