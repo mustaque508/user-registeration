@@ -13,7 +13,7 @@ const HomePage = () => {
                                         <div className="content_img  col-md-6 col-xl-5  d-flex align-items-center">
                                             <CommonImage/>
                                         </div>
-                                        <div className="content  col-md-6  col-xl-5">
+                                        <div className="content  col-md-6  col-xl-4">
                                         {
                                             (useLocation().pathname === "/register") ? <RegisterForm/> : <LoginForm/> 
                                         }

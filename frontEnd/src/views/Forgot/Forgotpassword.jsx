@@ -82,7 +82,7 @@ const Forgotpassword = () =>{
         <>
            <div className="container mt-5">
                <div className="row d-flex justify-content-center">
-                   <div className="col-sm-5">
+                   <div className="col-md-7 col-lg-5">
                         <div className="card shadow-sm p-3 mb-5 bg-white rounded">
                             <div className="card-body">
                                 <h5 className="card-title text-center">Forgot Password</h5>

@@ -32,7 +32,6 @@ import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Forgotpassword from './Forgot/Forgotpassword'
 import Activate from './Register/Activate'
-import Reactivate from './Register/Reactivate'
 import Resetpassword from './Forgot/Resetpassword'
 import Cookies from 'js-cookie'
 import atob from 'atob'
@@ -85,6 +84,6 @@ const colortheme = createMuiTheme({
   export {colortheme,MuiThemeProvider,TextField,Checkbox,FormControlLabel,Button,Link,React,Route,Switch,HomePage,Router,
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
     OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,useHistory,
-  Forgotpassword,Activate,Reactivate,Resetpassword,Cookies,atob,Redirect,PageNotFound,Sidebar,avatar,useContext,
+  Forgotpassword,Activate,Resetpassword,Cookies,atob,Redirect,PageNotFound,Sidebar,avatar,useContext,
   createContext,NewComplaint,Welcome,SideBar,WelcomeBar,ComplaintView,Comaplaints,Videos,Iframe,playlist_data
   ,ForumIcon,VideoLibraryIcon,ExitToAppOutlinedIcon,$};

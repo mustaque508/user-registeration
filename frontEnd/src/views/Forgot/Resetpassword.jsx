@@ -118,7 +118,7 @@ return (
 <div>
     <div className="container mt-5">
       <div className="row d-flex justify-content-center">
-        <div className="col-sm-5">
+        <div className="col-md-7 col-lg-5">
             <div className="card shadow-sm p-3 mb-5 bg-white rounded">
                 <div className="card-body">
                     <h2 className="card-title text-capitalize text-center">reset password</h2>

@@ -6,11 +6,11 @@ const Reactivate =()=>{
    
     return (
         <>
-         <div class="conainer mt-3 ">
-            <div class="row d-flex justify-content-center">
-                <div class="col-12 col-sm-8">
-                    <div class="card shadow-sm p-3 mb-5 bg-white rounded">
-                        <div class="card-body">
+           <div className="container mt-5">
+            <div className="row d-flex justify-content-center">
+                <div className="col-md-8">
+                    <div className="card shadow-sm p-3 mb-5 bg-white rounded">
+                        <div className="card-body">
                             <h3>Your account is already activated</h3>
                             <p>click below button to login</p>
 
