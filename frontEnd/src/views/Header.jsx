@@ -57,7 +57,6 @@ import 'animate.css/animate.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import $ from 'jquery'
 import '../dist/css/youtube.css'
-import '../dist/css/loginForm.css'
 toast.configure()
 
 // color theme for button [login and submit button]
