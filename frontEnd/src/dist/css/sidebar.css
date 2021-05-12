@@ -106,28 +106,66 @@
 
 /*********************************responsive code ****************************************/
 
-/* Custom, iPhone Retina start */ 
+/* Custom, iPhone Retina */ 
 
 @media screen and (min-width:320px) and (max-width:479px)
 {
 	.side-bar{
 		display: none;
 	}
-
-    #navbtn{
+	
+    #navbtn,.u-name{
 		display:inline !important;
 		margin-left:1rem;
-		margin-top: -0.2rem;
 	}
-
-	.u-name{
-		font-size: 16px;
-		margin-left: 0.5rem;
-	}
-
-
 	
 }
+
+/* Extra Small Devices, Phones  */ 
+@media screen and (min-width:480px) and (max-width:767px)
+{
+	.side-bar{
+		display: none;
+	}
+
+	#navbtn,.u-name{
+		display:inline !important;
+		margin-left:1rem;
+	}
+
+}
+
+
+/* Small Devices, Tablets start */
+@media screen and (min-width:768px) and (max-width:991px)
+{
+	.side-bar{
+		width: 24%;
+		display: inline !important;
+	}
+ 
+	.side-bar ul li{
+		font-size:1rem;
+	}
+
+	.user-p img {
+		width: 80px;
+	}
+
+	.user-p {
+		margin-bottom: 1rem;
+	}
+}
+
+
+/* Medium Devices, Desktops  start*/
+@media screen and (min-width:992px) and (max-width:1199px)
+{
+	.side-bar{
+		width:24.2%;
+	}
+}
+
 
 
 

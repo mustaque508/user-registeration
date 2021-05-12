@@ -6,12 +6,12 @@ import {React,NewComplaint,ComplaintView} from '../Header'
     return (
         <>
                 {/* New Complaint */}
-                <div className="col-md-5 mt-2">
+                <div className="col-lg-5 mt-2">
                     <NewComplaint serial_key={props.serial_key}/>
                 </div>
 
                 {/* view Complaints */}
-                <div className="col-md-7 mt-2">
+                <div className="col-lg-7  mt-2">
                     <ComplaintView serial_key={props.serial_key} />
                 </div>
         </>

@@ -83,11 +83,11 @@ const NewComplaint = (props) =>{
 
     return (
         <>
-            <div className="card shadow p-3 mb-5 bg-white rounded">
+            <div className="card shadow p-3 mb-5 bg-white rounded newcomplaint">
                 <div className="card-body">
-                <h3 className="text-left font-weight-bold card-title">Add New Complaint</h3>
+                <h3 className="text-left font-weight-bold card-title mt-1">Add New Complaint</h3>
 
-                    <form onSubmit={submit} method="POST" className="form-group mt-3" id="submit" autoComplete="off">
+                    <form onSubmit={submit} method="POST" className="form-group" id="submit" autoComplete="off">
 
                        {/* Serial Key */}
                        <label htmlFor="serial_key" className="mb-0 mt-2">Serial Key</label>

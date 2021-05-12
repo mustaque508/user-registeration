@@ -67,7 +67,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
     return (
        
-        <div className="card shadow p-3 mb-5 bg-white rounded">
+        <div className="card shadow p-3 mb-5 bg-white rounded complaintview">
           <div className="card-body">
 
              <div className="row">

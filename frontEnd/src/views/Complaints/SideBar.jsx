@@ -5,8 +5,9 @@ const SideBar =  () => {
 
     const history=useHistory();
 
+    //hide sidebar
     const hideSidebar = () =>{
-        if($(window).width()<480){
+        if($(window).width()<760){
             $('.side-bar').removeClass("animate__animated animate__slideInLeft");
             $('.side-bar').addClass("animate__animated animate__slideOutLeft");
         }
@@ -46,8 +47,8 @@ const SideBar =  () => {
                 <li onClick={hideSidebar}>
                   <Link to="/videos"><VideoLibraryIcon className="mr-2" /> Videos</Link>
                 </li>
-                <li>
-                <Link to="#" onClick={logout} ><ExitToAppOutlinedIcon className="mr-2" /> Logout</Link>
+                <li onClick={logout}>
+                <Link to="#"><ExitToAppOutlinedIcon className="mr-2" /> Logout</Link>
                 </li>
             </ul>
         </div>

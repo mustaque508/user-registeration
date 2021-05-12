@@ -12,15 +12,15 @@ const Welcome = (props) => {
             <div className="row">
 
                 {/* sidebar */}
-                <div className="col-xl-2 col-md-3 col-sm-12">
+                <div className="col-md-3 col-xl-2 ">
                     <SideBar/>
                 </div>
 
-                <div className="col-xl col-md col-sm">
+                <div className="col-md-9 col-xl">
 
                     {/* WelcomeBar */}
                     <div className="row">
-                        <div className="col-sm-12 p-0">
+                        <div className="col-12 p-0">
                             <WelcomeBar username={props.username}/>
                         </div>
                     </div>
