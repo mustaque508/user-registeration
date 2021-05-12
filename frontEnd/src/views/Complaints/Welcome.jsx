@@ -6,9 +6,18 @@ import {React,SideBar,WelcomeBar,Comaplaints,useLocation,Videos} from '../Header
 
 const Welcome = (props) => {
     
-      const location =useLocation();
+    const location =useLocation();
+
+     //disableRightClick
+     const disableRightClick =(e)=>{
+
+        //  if(location.pathname === "/videos"){
+        //     e.preventDefault();
+        //  }
+    }
+
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" onContextMenu={disableRightClick} >
             <div className="row">
 
                 {/* sidebar */}

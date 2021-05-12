@@ -1,67 +1,38 @@
 
 
-/* common styles */
-
-/* .youtube-section,
-.youtube-section .iframe-button,
-.youtube-section #forward-button,
-.youtube-section #backword-button,
-#controls
-{
-  position:absolute;
-}
-
-.carousel-inner .card img,
-.youtube-section .iframe-button,
-.youtube-section .outter-play
-{
-  cursor: pointer;
-}
-
-.youtube-section .iframe-button,
-.youtube-section .outter-play{
-  border:2px solid white;
-  border-radius: 50%;
-  background-color: white;
-}
-
-.youtube-section #forward-button,
-.youtube-section #backword-button,
-#controls
-{
-  background-color: transparent;
-  visibility:hidden;
-}
-
-.youtube-section iframe,
-.youtube-section .card,
-#controls
-{
-  border-radius:10px;
-}
-
-.youtube-section iframe,
-#progressBar
-{
-  width:100%;
-} */
-
 /************************************youtbe player style**********************************/  
+
+
+.youtube-section .row .youtube-palyer{
+  height:65vh;
+}
 
 .youtube-section #ytplayer{
   pointer-events: none;
   width:100% !important;
-  height: 90% !important;
+  height:100% !important;
   position: relative;
 }
 
 /*****************  youtube controlls *********************************/
 
+.bottomcontrols .slider,
+.bottomcontrols
+{
+  color:lightgray;
+}
+
+.bottomcontrols
+{
+  background-color:black;
+}
+
+
 .middlecontrols
 {
   position: absolute;
   width:100%;
-  top:45%;
+  top:50%;
   left:50%;
   transform: translate(-50%,-50%);
   
@@ -71,72 +42,49 @@
 {
   position: absolute;
   width:100%;
-  bottom:4%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  bottom:0;
+  left:50.1%;
+  transform: translate(-50%,0);
+}
+
+.bottomcontrols .button :hover{
+  color:white;
+  cursor: pointer;
 }
 
 
 
-.middlecontrols .row
-{
-  display: flex;
-  flex-direction:row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.controlwrapper .button
-{
-  color:#828AA5;
-
-}
-
-.controlwrapper .button :hover{
-  color:lightgray;
-}
-
-.middlecontrols .row .play-button :hover {
-  color:red;
-}
-.bottomcontrols .row .buttons
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    
-}
 /* ************************ Youtube Playlist************************************* */
 
 
-.play-list{
-  display: block;
-  height:420px;
+.play-list .card{
+  height:65vh;
+  margin: 0 !important;
   overflow-y : scroll;
+
 }
 
-.play-list::-webkit-scrollbar-track
+.play-list .card::-webkit-scrollbar-track
 {
  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
  background-color: #CCCCCC;
  box-shadow:inset 0 0 6px rgba(0,0,0,0.6);
 
 }
-.play-list::-webkit-scrollbar-track
+.play-list .card::-webkit-scrollbar-track
 {
  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
  background-color: #CCCCCC;
  box-shadow:inset 0 0 6px rgba(0,0,0,0.6);
 }
 
-.play-list::-webkit-scrollbar
+.play-list .card::-webkit-scrollbar
 {
  width: 5px;
  background-color: #F5F5F5;
 }
 
-.play-list::-webkit-scrollbar-thumb
+.play-list .card::-webkit-scrollbar-thumb
 {
  background-color: #FFF;
  background-image: -webkit-linear-gradient(90deg,
@@ -146,3 +94,22 @@
                                            rgba(0, 0, 0, 1) 75%,
                                            transparent)
 }
+
+/*******************Responsive code *************************************/
+
+
+@media screen and (min-width:320px) and (max-width:1199px)
+{
+  .play-list {
+    padding: 0 !important;
+    margin-top: 2rem !important;
+  }
+
+  .youtube-section .row .youtube-palyer{
+    height:50vh;
+  }
+
+
+}
+
+/******************************************************************/

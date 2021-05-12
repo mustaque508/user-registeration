@@ -1,12 +1,12 @@
 // inlcude all import files
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles"
+import { createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles"
 import TextField from '@material-ui/core/TextField'
 import { Checkbox,FormControlLabel} from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import { Link,BrowserRouter,Redirect } from 'react-router-dom'
-import React ,{ useState,useEffect,useContext,createContext } from 'react'
+import React ,{ useState,useEffect,useContext,createContext,forwardRef,useRef } from 'react'
 import { Route, Switch } from 'react-router'
 import HomePage from '../views/HomePage'
 import Router from '../config/Router'
@@ -56,6 +56,24 @@ import 'animate.css/animate.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import $ from 'jquery'
 import '../dist/css/youtube.css'
+import Slider from '@material-ui/core/Slider';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import FastForwardIcon from '@material-ui/icons/FastForward';
+import FastRewindIcon from '@material-ui/icons/FastRewind';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import { Typography } from '@material-ui/core';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import PauseIcon from '@material-ui/icons/Pause';
+import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
+import PropTypes from 'prop-types';
+import ReactPlayer from 'react-player'
+import PlayerControls from './youtubeVideos/PlayerControls'
+import screenfull from 'screenfull'
+
+
 toast.configure()
 
 // color theme for button [login and submit button]
@@ -65,6 +83,8 @@ const colortheme = createMuiTheme({
     }
   });
 
+
+  //bootstrap 
   const useStylesBootstrap = makeStyles((theme) => ({
     arrow: {
       color:"red"
@@ -74,6 +94,7 @@ const colortheme = createMuiTheme({
       fontSize: "0.8rem"
     },
   }));
+
 
   function BootstrapTooltip(props) {
     const classes = useStylesBootstrap();
@@ -86,4 +107,6 @@ const colortheme = createMuiTheme({
     OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,useHistory,
   Forgotpassword,Activate,Resetpassword,Cookies,atob,Redirect,PageNotFound,Sidebar,avatar,useContext,
   createContext,NewComplaint,Welcome,SideBar,WelcomeBar,ComplaintView,Comaplaints,Videos,Iframe,playlist_data
-  ,ForumIcon,VideoLibraryIcon,ExitToAppOutlinedIcon,$};
+  ,ForumIcon,VideoLibraryIcon,ExitToAppOutlinedIcon,$,PlayArrowIcon,SkipNextIcon,SkipPreviousIcon,FastForwardIcon,FastRewindIcon,
+  VolumeUpIcon,Typography,FullscreenIcon,PauseIcon,PauseCircleFilledIcon,VolumeOffIcon,PropTypes,forwardRef,ReactPlayer,PlayerControls
+,screenfull,Slider,useRef};

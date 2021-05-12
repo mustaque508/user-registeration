@@ -1,10 +1,6 @@
 /************************************************** Videos *******************************************/
 
-import {React,playlist_data,useState} from '../Header'
-import ReactPlayer from 'react-player'
-import PlayerControls from '../youtubeVideos/PlayerControls'
-import {useRef} from 'react'
-import screenfull from 'screenfull'
+import {React,playlist_data,useState,useRef,screenfull,ReactPlayer,PlayerControls} from '../Header'
 
 
 //format duration and currentTime
@@ -133,18 +129,21 @@ let count=0;
     const playNextvideo = () =>{
         console.log(playerRef.current.props.url);
     }
+
+   
+
     return (
-        <div className="container youtube-section">
+        <div className="container-fluid youtube-section">
             <div className="row">
                 <div className="col-sm-12">
-                    <div className="card video-card shadow p-3 mb-5 bg-white rounded">
+                    <div className="card shadow p-3 bg-white rounded">
                         <div className="card-body">
-                            <h3 className="card-title  font-weight-bolder">Video player</h3>
+                            <h3 className="card-title font-weight-bolder text-primary mb-4 ">Video player</h3>
                                 
                                 <div className="row">
 
                                     {/* video player */}
-                                    <div className="col-md-8" ref={playerContainerRef} onMouseMove={onMouseMove} >
+                                    <div className="col-xl-8 p-0  youtube-palyer card shadow-lg  bg-white border-0" ref={playerContainerRef} onMouseMove={onMouseMove}>
                                         <ReactPlayer 
                                             muted={muted}
                                             ref={playerRef} 
@@ -170,26 +169,27 @@ let count=0;
                                             elapsedTime={elapsedTime}
                                             totalDuration={totalDuration}
                                             playNextvideo={playNextvideo}
+                                
                                         />
                                     </div>
 
                                  
-                                     <div className="col-md">
-                                        <div className="card shadow-sm p-3 mb-5 bg-white rounded play-list">
-                                            {
-                                                playlist_data.map((data,index)=>{
-                                                    return(
-                                                        <div className="media" key={index}>
-                                                            <img src={data.src} width="35%" height="35%"  data-url={data.url}  title="play video" id="next-play"  alt={data.alt} className="mr-2 img-thumbnail" onClick={changeIframe} style={{'cursor':'pointer'}}/>
-                                                            <div className="media-body">
-                                                                <span className="mt-0">{data.title}</span>
+                                     <div className="col-xl-4 play-list">
+                                        <div className="card shadow-lg  bg-white  border-0">
+                                            <div className="card-body">
+                                                {
+                                                    playlist_data.map((data,index)=>{
+                                                        return(
+                                                            <div className="media" key={index}>
+                                                                <img src={data.src}   data-url={data.url}  title="play video" id="next-play"  alt={data.alt} className="mr-2 img-thumbnail" onClick={changeIframe} style={{'cursor':'pointer'}}/>
+                                                                <div className="media-body">
+                                                                    <span className="mt-0">{data.title}</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    )
-                                                })
-                                            }
-                                          
-                                            
+                                                        )
+                                                    })
+                                                }
+                                            </div>  
                                         </div>
                                     </div>
                                     

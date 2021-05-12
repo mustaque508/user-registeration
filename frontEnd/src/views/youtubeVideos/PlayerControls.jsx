@@ -1,18 +1,5 @@
-import {React,Tooltip} from '../Header'
-import Slider from '@material-ui/core/Slider';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import FastForwardIcon from '@material-ui/icons/FastForward';
-import FastRewindIcon from '@material-ui/icons/FastRewind';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
-import { Typography } from '@material-ui/core';
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
-import PauseIcon from '@material-ui/icons/Pause';
-import PauseCircleFilledIcon from '@material-ui/icons/PauseCircleFilled';
-import VolumeOffIcon from '@material-ui/icons/VolumeOff';
-import PropTypes from 'prop-types';
-import {forwardRef} from 'react'
+import {React,Tooltip,forwardRef,PropTypes,FastRewindIcon,PauseCircleFilledIcon,FastForwardIcon,
+    Slider,SkipPreviousIcon,PauseIcon,PlayArrowIcon,SkipNextIcon,VolumeOffIcon,VolumeUpIcon,Typography,FullscreenIcon} from '../Header'
 
 const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMute,muted,onToggleFullScreen,played,onSeekMouseUp,onSeekMouseDown,onSeek,elapsedTime,totalDuration,playNextvideo},ref)=>{
 
@@ -35,17 +22,17 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
 
       
     return (
-        <div className="controlwrapper" ref={ref}>
+        <div className="controlwrapper justify-content-center" ref={ref} >
             <div className="middlecontrols">
-                <div className="row">
+                <div className="row d-flex justify-content-around">
 
                     {/* Backword button */}
-                    <div className="button" onClick={onRewind}>
+                    <div className="d-flex align-items-center" onClick={onRewind}>
                         <FastRewindIcon style={{'fontSize':'40px'}} />
                     </div>
 
                     {/* play button */}
-                    <div className="play-button" style={{'color':'red'}} onClick={onPlayPause}>
+                    <div className="play-button d-flex align-items-center" style={{'color':'red'}} onClick={onPlayPause}>
                         {
                             playing ? <PauseCircleFilledIcon style={{'fontSize':'60px'}} /> :  <i className="fab fa-youtube fa-4x"></i>
                         }
@@ -53,20 +40,20 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
                     </div>
 
                     {/* forward button */}
-                    <div className="button" onClick={onForward}>
+                    <div className="d-flex align-items-center" onClick={onForward}>
                        <FastForwardIcon  style={{'fontSize':'40px'}} />
                     </div>
                 </div>
             </div>
 
             <div className="bottomcontrols">
-                <div className="row m-0">
+                <div className="row">
 
                     {/* slideBar */}
                     <div className="col-12">
                         <Slider
-                            className="ml-2" 
-                            style={{'width':'98%'}}
+                            className="ml-1 slider" 
+                            style={{'width':'99%'}}
                             min={0}
                             max={100}
                             ValueLabelComponent={(props)=><ValueLabelComponent {...props} value={elapsedTime} />}
@@ -78,51 +65,52 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
                     </div>
 
 
-                    <div className="col-12 m-0">
-                      <div className="row ">
-                                <div className="col-4 buttons">
+                    <div className="col-12">
+                        <div className="row">
+                            <div className=" col-5 d-flex justify-content-between">
 
-                                    {/* prev button */}
-                                    <div className="button">
-                                        <SkipPreviousIcon/>
-                                    </div> 
+                                {/* prev button */}
+                                <div className="button d-flex align-items-center">
+                                    <SkipPreviousIcon/>
+                                </div> 
 
-                                    {/* play button */}
-                                    <div className="button"onClick={onPlayPause}>
-                                     {
+                                {/* play button */}
+                                <div className="button d-flex align-items-center" onClick={onPlayPause}>
+                                    {
                                          playing ?<PauseIcon/> : <PlayArrowIcon />
-                                     } 
-                                    </div>
-
-                                    {/* next button */}
-                                    <div className="button" onClick={playNextvideo}>
-                                        <SkipNextIcon/>
-                                    </div>
-
-                                    {/* volume button */}
-                                    <div className="button" onClick={onMute}>
-                                        {
-                                            muted ? <VolumeOffIcon/>: <VolumeUpIcon/>
-                                        }
-                                       
-                                    </div>
-
-                                    {/* video-duration */}
-                                    <div className="button">
-                                        <Typography>{elapsedTime}/{totalDuration}</Typography>
-                                    </div>
-
+                                    } 
                                 </div>
 
-                                <div className="col-8 d-flex justify-content-end">
-
-                                        {/* video-duration */}
-                                        <div className="button" onClick={onToggleFullScreen}>
-                                            <FullscreenIcon/>
-                                        </div>
+                                 {/* next button */}
+                                <div className=" button d-flex align-items-center" onClick={playNextvideo}>
+                                    <SkipNextIcon/>
                                 </div>
-                      </div>
-                            
+
+                                {/* volume button */}
+                                <div className="button d-flex align-items-center" onClick={onMute}>
+                                    {
+                                        muted ? <VolumeOffIcon/>: <VolumeUpIcon/>
+                                    }   
+                                </div>
+                                
+                                {/* video-duration */}
+                                <div className="button d-flex align-items-center">
+                                    <Typography>{elapsedTime}/{totalDuration}</Typography>
+                                </div>
+
+                            </div>
+                      
+
+                            <div className="d-flex justify-content-end col-7">
+
+                                {/*full screen */}
+                                <div className="button d-flex align-items-center" onClick={onToggleFullScreen}>
+                                    <FullscreenIcon/>
+                                </div>
+
+                            </div>
+                        </div>
+                     
                     </div>
                   
                 </div>
