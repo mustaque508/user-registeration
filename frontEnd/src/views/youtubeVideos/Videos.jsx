@@ -1,7 +1,7 @@
 /************************************************** Videos *******************************************/
 
 import {React,playlist_data,useState,useRef,screenfull,ReactPlayer,PlayerControls} from '../Header'
-
+import getYouTubeID from 'get-youtube-id';
 
 //format duration and currentTime
 const format =(seconds)=>{
@@ -28,7 +28,8 @@ let count=0;
         playing:false,
         muted:false,
         played:0,
-        seeking:false
+        seeking:false,
+        url:process.env.REACT_APP_YOUTUBE_URL
     });
 
 
@@ -36,7 +37,7 @@ let count=0;
     const playerContainerRef=useRef(null);
     const controlsRef=useRef(null);
     
-    const{playing,muted,played,seeking}=player;
+    const{playing,muted,played,seeking,url}=player;
 
     const currentTime= playerRef.current ? playerRef.current.getCurrentTime(): "00:00";
     const duration=playerRef.current ? playerRef.current.getDuration(): "00:00";
@@ -48,7 +49,10 @@ let count=0;
     //change URL based on user click
     const changeIframe = (event) =>{
         const newSRC=event.target.getAttribute("data-url");
-        document.getElementById("ytplayer").firstChild.firstChild.src=newSRC;
+        setPlayer({
+            url:newSRC
+        });
+
     }
 
   
@@ -126,10 +130,61 @@ let count=0;
     }
 
     //play next video
-    const playNextvideo = () =>{
-        console.log(playerRef.current.props.url);
+    const playNextVideo = () =>{
+        
+      for (let index =0; index < playlist_data.length; index++) {
+
+            //get url from playlist
+            const next_url = playlist_data[index].url;
+
+            if(getYouTubeID(url) === getYouTubeID(next_url))
+            {
+                setPlayer({
+                    url : playlist_data[++index].url
+                });
+                break;
+            }
+            else if(getYouTubeID(url) === getYouTubeID(playlist_data[playlist_data.length-1].url)){
+                setPlayer({
+                    url : playlist_data[index].url
+                });
+                break;
+            }
+          
+      }
     }
 
+    //play previous video
+    const playPreviousVideo = () =>{
+
+        for (let index =0; index < playlist_data.length; index++) {
+
+            //get url from playlist
+            const prev_url = playlist_data[index].url;
+
+            console.log(url);
+
+            
+            if(getYouTubeID(url) === getYouTubeID(prev_url)){
+
+                if(index === 0){
+                    setPlayer({
+                        url : playlist_data[index].url
+                    });
+                    break;
+                }
+                else
+                {
+                    setPlayer({
+                        url : playlist_data[--index].url
+                    });
+                    break;
+                }
+               
+            } 
+        }
+      
+    }
    
 
     return (
@@ -149,9 +204,9 @@ let count=0;
                                             ref={playerRef} 
                                             playing={playing} 
                                             id="ytplayer" 
-                                            url="https://www.youtube-nocookie.com/embed/Yhs_3eoIHjk?enablejsapi=1&vq=hd1080&modestbranding=1&fs=0&rel=0&controls=0&listType=playlist&list=PL7Zm4iklj7qw18z6h8VRtVSuFZ1QtwLcN"
+                                            url={url}
                                             onProgress={onProgress}
-
+                                            
                                         />
                                         <PlayerControls 
                                             ref={controlsRef}
@@ -168,7 +223,9 @@ let count=0;
                                             onSeekMouseDown={onSeekMouseDown}
                                             elapsedTime={elapsedTime}
                                             totalDuration={totalDuration}
-                                            playNextvideo={playNextvideo}
+                                            playNextVideo={playNextVideo}
+                                            playPreviousVideo={playPreviousVideo}
+                                            
                                 
                                         />
                                     </div>

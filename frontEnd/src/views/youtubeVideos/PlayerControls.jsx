@@ -1,7 +1,7 @@
 import {React,Tooltip,forwardRef,PropTypes,FastRewindIcon,PauseCircleFilledIcon,FastForwardIcon,
     Slider,SkipPreviousIcon,PauseIcon,PlayArrowIcon,SkipNextIcon,VolumeOffIcon,VolumeUpIcon,Typography,FullscreenIcon} from '../Header'
 
-const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMute,muted,onToggleFullScreen,played,onSeekMouseUp,onSeekMouseDown,onSeek,elapsedTime,totalDuration,playNextvideo},ref)=>{
+const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMute,muted,onToggleFullScreen,played,onSeekMouseUp,onSeekMouseDown,onSeek,elapsedTime,totalDuration,playNextVideo,playPreviousVideo},ref)=>{
 
 
     function ValueLabelComponent(props) {
@@ -70,7 +70,7 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
                             <div className=" col-5 d-flex justify-content-between">
 
                                 {/* prev button */}
-                                <div className="button d-flex align-items-center">
+                                <div className="button d-flex align-items-center" onClick={playPreviousVideo}>
                                     <SkipPreviousIcon/>
                                 </div> 
 
@@ -82,7 +82,7 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
                                 </div>
 
                                  {/* next button */}
-                                <div className=" button d-flex align-items-center" onClick={playNextvideo}>
+                                <div className=" button d-flex align-items-center" onClick={playNextVideo}>
                                     <SkipNextIcon/>
                                 </div>
 

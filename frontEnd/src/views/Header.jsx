@@ -47,7 +47,6 @@ import ComplaintView from './Complaints/ComplaintView'
 import '../dist/css/complaint.css'
 import Comaplaints from './Complaints/Complaints'
 import Videos from './youtubeVideos/Videos'
-import Iframe from 'react-iframe'
 import playlist_data from './youtubeVideos/playlist'
 import ForumIcon from '@material-ui/icons/Forum';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary'
@@ -106,7 +105,7 @@ const colortheme = createMuiTheme({
     login_img,useLocation,CommonImage,LoginForm,RegisterForm,useState,useEffect,intlTelInput,InfoSharpIcon,Popover,
     OverlayTrigger,ReactDOM,BrowserRouter,App,Tooltip,BootstrapTooltip,plugin_for_contact,util,axios,validator,toast,useHistory,
   Forgotpassword,Activate,Resetpassword,Cookies,atob,Redirect,PageNotFound,Sidebar,avatar,useContext,
-  createContext,NewComplaint,Welcome,SideBar,WelcomeBar,ComplaintView,Comaplaints,Videos,Iframe,playlist_data
+  createContext,NewComplaint,Welcome,SideBar,WelcomeBar,ComplaintView,Comaplaints,Videos,playlist_data
   ,ForumIcon,VideoLibraryIcon,ExitToAppOutlinedIcon,$,PlayArrowIcon,SkipNextIcon,SkipPreviousIcon,FastForwardIcon,FastRewindIcon,
   VolumeUpIcon,Typography,FullscreenIcon,PauseIcon,PauseCircleFilledIcon,VolumeOffIcon,PropTypes,forwardRef,ReactPlayer,PlayerControls
 ,screenfull,Slider,useRef};
