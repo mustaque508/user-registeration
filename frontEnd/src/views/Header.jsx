@@ -71,6 +71,7 @@ import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player'
 import PlayerControls from './youtubeVideos/PlayerControls'
 import screenfull from 'screenfull'
+import getYouTubeID from 'get-youtube-id';
 
 
 toast.configure()
@@ -108,4 +109,4 @@ const colortheme = createMuiTheme({
   createContext,NewComplaint,Welcome,SideBar,WelcomeBar,ComplaintView,Comaplaints,Videos,playlist_data
   ,ForumIcon,VideoLibraryIcon,ExitToAppOutlinedIcon,$,PlayArrowIcon,SkipNextIcon,SkipPreviousIcon,FastForwardIcon,FastRewindIcon,
   VolumeUpIcon,Typography,FullscreenIcon,PauseIcon,PauseCircleFilledIcon,VolumeOffIcon,PropTypes,forwardRef,ReactPlayer,PlayerControls
-,screenfull,Slider,useRef};
+,screenfull,Slider,useRef,getYouTubeID};

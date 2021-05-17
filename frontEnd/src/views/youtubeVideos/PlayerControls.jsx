@@ -28,20 +28,27 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
 
                     {/* Backword button */}
                     <div className="d-flex align-items-center" onClick={onRewind}>
-                        <FastRewindIcon style={{'fontSize':'40px'}} />
+
+                        <Tooltip title="backward 10 sec" placement="top">
+                            <FastRewindIcon style={{'fontSize':'40px'}} />
+                        </Tooltip>
+                        
                     </div>
 
                     {/* play button */}
                     <div className="play-button d-flex align-items-center" style={{'color':'red'}} onClick={onPlayPause}>
                         {
-                            playing ? <PauseCircleFilledIcon style={{'fontSize':'60px'}} /> :  <i className="fab fa-youtube fa-4x"></i>
+                            playing ?   <Tooltip title="pause" placement="top"><PauseCircleFilledIcon style={{'fontSize':'60px'}} /></Tooltip>  :  <Tooltip title="play" placement="top"><i className="fab fa-youtube fa-4x"></i></Tooltip>
                         }
                    
                     </div>
 
                     {/* forward button */}
                     <div className="d-flex align-items-center" onClick={onForward}>
-                       <FastForwardIcon  style={{'fontSize':'40px'}} />
+                        <Tooltip title="forward 10 sec" placement="top">
+                            <FastForwardIcon  style={{'fontSize':'40px'}} />
+                        </Tooltip>
+                     
                     </div>
                 </div>
             </div>
@@ -71,26 +78,33 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
 
                                 {/* prev button */}
                                 <div className="button d-flex align-items-center" onClick={playPreviousVideo}>
-                                    <SkipPreviousIcon/>
+                                    <Tooltip title="previous video" placement="top">
+                                        <SkipPreviousIcon />
+                                    </Tooltip>
                                 </div> 
 
                                 {/* play button */}
                                 <div className="button d-flex align-items-center" onClick={onPlayPause}>
                                     {
-                                         playing ?<PauseIcon/> : <PlayArrowIcon />
+                                         playing ?  <Tooltip title="pause" placement="top"><PauseIcon/></Tooltip> :   <Tooltip title="play" placement="top"><PlayArrowIcon /></Tooltip>
                                     } 
                                 </div>
 
                                  {/* next button */}
                                 <div className=" button d-flex align-items-center" onClick={playNextVideo}>
-                                    <SkipNextIcon/>
+                                    <Tooltip title="next video" placement="top">
+                                        <SkipNextIcon/>
+                                    </Tooltip>
                                 </div>
 
                                 {/* volume button */}
                                 <div className="button d-flex align-items-center" onClick={onMute}>
+
                                     {
-                                        muted ? <VolumeOffIcon/>: <VolumeUpIcon/>
+                                        muted ?  <Tooltip title="volume off" placement="top"><VolumeOffIcon/></Tooltip>:  <Tooltip title="volume up" placement="top"><VolumeUpIcon/></Tooltip>
                                     }   
+                                   
+                                    
                                 </div>
                                 
                                 {/* video-duration */}
@@ -105,7 +119,10 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
 
                                 {/*full screen */}
                                 <div className="button d-flex align-items-center" onClick={onToggleFullScreen}>
-                                    <FullscreenIcon/>
+                                    <Tooltip title="full screen" placement="top">
+                                        <FullscreenIcon/> 
+                                    </Tooltip>
+                                    
                                 </div>
 
                             </div>

@@ -1,7 +1,6 @@
 /************************************************** Videos *******************************************/
 
-import {React,playlist_data,useState,useRef,screenfull,ReactPlayer,PlayerControls} from '../Header'
-import getYouTubeID from 'get-youtube-id';
+import {React,playlist_data,useState,useRef,screenfull,ReactPlayer,PlayerControls,getYouTubeID} from '../Header'
 
 //format duration and currentTime
 const format =(seconds)=>{
@@ -22,6 +21,8 @@ const format =(seconds)=>{
 
 let count=0;
  const Videos = () => {
+
+    
 
       //player options initial states
       const [player,setPlayer]=useState({

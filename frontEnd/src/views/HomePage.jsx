@@ -4,6 +4,7 @@ import {React,CommonImage,useLocation,LoginForm,RegisterForm} from './Header'
 
 const HomePage = () => {
 
+
     return (
         <>
           <div>
