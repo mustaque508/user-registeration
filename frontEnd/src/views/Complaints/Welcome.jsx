@@ -11,9 +11,9 @@ const Welcome = (props) => {
      //disableRightClick
      const disableRightClick =(e)=>{
 
-        //  if(location.pathname === "/videos"){
-        //     e.preventDefault();
-        //  }
+         if(location.pathname === "/videos"){
+            e.preventDefault();
+         }
     }
 
     return (

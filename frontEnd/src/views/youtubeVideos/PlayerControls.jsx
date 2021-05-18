@@ -1,23 +1,22 @@
-import {React,Tooltip,forwardRef,PropTypes,FastRewindIcon,PauseCircleFilledIcon,FastForwardIcon,
+import {React,forwardRef,PropTypes,FastRewindIcon,PauseCircleFilledIcon,FastForwardIcon,
     Slider,SkipPreviousIcon,PauseIcon,PlayArrowIcon,SkipNextIcon,VolumeOffIcon,VolumeUpIcon,Typography,FullscreenIcon} from '../Header'
 
 const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMute,muted,onToggleFullScreen,played,onSeekMouseUp,onSeekMouseDown,onSeek,elapsedTime,totalDuration,playNextVideo,playPreviousVideo},ref)=>{
 
 
     function ValueLabelComponent(props) {
-        const { children, open, value } = props;
+        const { children, value } = props;
       
         return (
-          <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
+          <span title={value}>
             {children}
-          </Tooltip>
+          </span>
         );
       }
       
       ValueLabelComponent.propTypes = {
         children: PropTypes.element.isRequired,
-        open: PropTypes.bool.isRequired,
-        value:PropTypes.string.isRequired,
+        value:PropTypes.string.isRequired
       };
 
       
@@ -29,25 +28,25 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
                     {/* Backword button */}
                     <div className="d-flex align-items-center" onClick={onRewind}>
 
-                        <Tooltip title="backward 10 sec" placement="top">
+                        <span title="backward 10 sec">
                             <FastRewindIcon style={{'fontSize':'40px'}} />
-                        </Tooltip>
+                        </span>
                         
                     </div>
 
                     {/* play button */}
                     <div className="play-button d-flex align-items-center" style={{'color':'red'}} onClick={onPlayPause}>
                         {
-                            playing ?   <Tooltip title="pause" placement="top"><PauseCircleFilledIcon style={{'fontSize':'60px'}} /></Tooltip>  :  <Tooltip title="play" placement="top"><i className="fab fa-youtube fa-4x"></i></Tooltip>
+                            playing ?   <span title="pause"><PauseCircleFilledIcon style={{'fontSize':'60px'}} /></span>  :  <span title="play"><i className="fab fa-youtube fa-4x"></i></span>
                         }
                    
                     </div>
 
                     {/* forward button */}
                     <div className="d-flex align-items-center" onClick={onForward}>
-                        <Tooltip title="forward 10 sec" placement="top">
+                        <span title="forward 10 sec">
                             <FastForwardIcon  style={{'fontSize':'40px'}} />
-                        </Tooltip>
+                        </span>
                      
                     </div>
                 </div>
@@ -78,30 +77,30 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
 
                                 {/* prev button */}
                                 <div className="button d-flex align-items-center" onClick={playPreviousVideo}>
-                                    <Tooltip title="previous video" placement="top">
+                                    <span title="previous video">
                                         <SkipPreviousIcon />
-                                    </Tooltip>
+                                    </span>
                                 </div> 
 
                                 {/* play button */}
                                 <div className="button d-flex align-items-center" onClick={onPlayPause}>
                                     {
-                                         playing ?  <Tooltip title="pause" placement="top"><PauseIcon/></Tooltip> :   <Tooltip title="play" placement="top"><PlayArrowIcon /></Tooltip>
+                                         playing ?  <span title="pause"><PauseIcon/></span> :   <span title="play" ><PlayArrowIcon /></span>
                                     } 
                                 </div>
 
                                  {/* next button */}
                                 <div className=" button d-flex align-items-center" onClick={playNextVideo}>
-                                    <Tooltip title="next video" placement="top">
+                                    <span title="next video">
                                         <SkipNextIcon/>
-                                    </Tooltip>
+                                    </span>
                                 </div>
 
                                 {/* volume button */}
                                 <div className="button d-flex align-items-center" onClick={onMute}>
 
                                     {
-                                        muted ?  <Tooltip title="volume off" placement="top"><VolumeOffIcon/></Tooltip>:  <Tooltip title="volume up" placement="top"><VolumeUpIcon/></Tooltip>
+                                        muted ?  <span title="volume off"><VolumeOffIcon/></span>:  <span title="volume up"><VolumeUpIcon/></span>
                                     }   
                                    
                                     
@@ -119,9 +118,9 @@ const PlayerControls = forwardRef(({onPlayPause,playing,onRewind,onForward,onMut
 
                                 {/*full screen */}
                                 <div className="button d-flex align-items-center" onClick={onToggleFullScreen}>
-                                    <Tooltip title="full screen" placement="top">
+                                    <span title="full screen">
                                         <FullscreenIcon/> 
-                                    </Tooltip>
+                                    </span>
                                     
                                 </div>
 

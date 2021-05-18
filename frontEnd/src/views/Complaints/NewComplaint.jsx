@@ -27,14 +27,10 @@ const NewComplaint = (props) =>{
     
     // change input fields based on [onchange ]
     const inputEvent = (event) =>{
-        const{name,value}=event.target;
-        setComplaint_details((prevValue)=>{
-            return{
-                ...prevValue,
-                [name]:value
-            }
-
-        })
+        setComplaint_details({
+            serial_key,
+            complaint:event.target.value
+        });
     }
 
      //Hide Tooltip
