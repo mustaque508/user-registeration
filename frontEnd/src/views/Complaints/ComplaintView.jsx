@@ -94,7 +94,7 @@ import SearchIcon from '@material-ui/icons/Search';
                     <tr className="table-info">
                         <th scope="col">S.No</th>
                         <th scope="col">ComplaintNo.</th>
-                        <th scope="col">Serialkey</th>
+                        <th scope="col">SerialKey</th>
                         <th scope="col">Complaint</th>
                         <th scope="col">ComplaintDate</th>
                         <th scope="col">Status</th>
