@@ -117,8 +117,14 @@
 	
     #navbtn,.u-name{
 		display:inline !important;
-		margin-left:0.5rem;
+		margin-left:1rem;
 	}
+
+	.u-name{
+		font-size: 16px !important;
+	}
+
+
 	
 }
 
