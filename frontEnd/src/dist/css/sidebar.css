@@ -112,11 +112,12 @@
 {
 	.side-bar{
 		display: none;
+		width:210px !important;
 	}
 	
     #navbtn,.u-name{
 		display:inline !important;
-		margin-left:1rem;
+		margin-left:0.5rem;
 	}
 	
 }
@@ -126,6 +127,7 @@
 {
 	.side-bar{
 		display: none;
+		width:210px !important;
 	}
 
 	#navbtn,.u-name{
@@ -140,7 +142,7 @@
 @media screen and (min-width:768px) and (max-width:991px)
 {
 	.side-bar{
-		width: 24%;
+		width: 24% !important;
 		display: inline !important;
 	}
  
@@ -162,7 +164,7 @@
 @media screen and (min-width:992px) and (max-width:1199px)
 {
 	.side-bar{
-		width:24.2%;
+		width:24.2% !important;
 	}
 }
 

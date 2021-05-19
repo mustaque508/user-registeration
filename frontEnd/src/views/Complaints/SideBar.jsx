@@ -1,7 +1,43 @@
 /************************************* sidebar ****************************/
-import {React,avatar,Link,ForumIcon,VideoLibraryIcon,ExitToAppOutlinedIcon,$,Cookies,toast,useHistory} from '../Header'
+import {React,avatar,Link,ForumIcon,VideoLibraryIcon,ExitToAppOutlinedIcon,$,Cookies,toast,useHistory,useEffect,useState} from '../Header'
+
+
+//get window dimensions
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+  
+ function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(
+      getWindowDimensions()
+    );
+  
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    return windowDimensions;
+  }
 
 const SideBar =  () => {
+
+    const { width } = useWindowDimensions();
+
+    //remove animation class
+    if(width>768){
+        $('.side-bar').removeClass("animate__animated animate__slideInLeft");
+        $('.side-bar').removeClass("animate__animated animate__slideOutLeft");
+    }
+   
 
     const history=useHistory();
 

@@ -14,14 +14,12 @@ const WelcomeBar = (props) => {
             $('.side-bar').removeClass("animate__animated animate__slideOutLeft");
             $('.side-bar').addClass("animate__animated animate__slideInLeft");
             $('.side-bar').css("z-index","100");
-            $('.side-bar').css('width','100%');
             $('.side-bar').css('display','inline');
         }
         else
         {
             $('.side-bar').removeClass("animate__animated animate__slideInLeft");
             $('.side-bar').addClass("animate__animated animate__slideOutLeft");
-        
         }
 
        
