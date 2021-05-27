@@ -30,4 +30,4 @@ const plugin_for_contact =(props)=>{
 
 
 
-export {plugin_for_contact,};
+export {plugin_for_contact};
