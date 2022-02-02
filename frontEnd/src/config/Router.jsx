@@ -1,62 +1,88 @@
-
-
 // Router file
 
-import {React,Route,Switch,HomePage,Forgotpassword,Resetpassword,useLocation,Redirect,useHistory,PageNotFound,Activate,Welcome} from '../views/Header'
-
-
+import {
+  React,
+  Route,
+  Switch,
+  HomePage,
+  Forgotpassword,
+  Resetpassword,
+  useLocation,
+  Redirect,
+  useHistory,
+  PageNotFound,
+  Activate,
+  Welcome,
+} from "../views/Header";
 
 const Router = () => {
+  const location = useLocation();
 
-    const location=useLocation();
+  const history = useHistory();
 
-    const history=useHistory();
+  // get username from useHistory hook
+  const username = location.state;
 
-    // get username from useHistory hook
-    const username=location.state;
+  return (
+    <div>
+      <Switch>
+        <Route exact path="/" component={HomePage}></Route>
 
+        <Route exact path="/register">
+          {history.action === "PUSH" ? <HomePage /> : <Redirect to="/" />}
+        </Route>
 
-    return (
-        <div>
-            <Switch>
+        <Route exact path="/welcome">
+          {username ? (
+            <Welcome
+              username={sessionStorage.getItem("uname")}
+              serial_key={sessionStorage.getItem("serial_key")}
+            />
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Route>
 
-                <Route exact path="/" component={HomePage}></Route> 
-                
-                <Route exact path="/register">
-                    {(history.action === "PUSH") ? <HomePage/> : <Redirect to="/" /> }
-                </Route>
-                
-                <Route exact path="/welcome">
-                    {(username) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')} /> : <Redirect to="/" /> }
-                </Route>
+        <Route exact path="/complaints">
+          {sessionStorage.getItem("uname") ? (
+            <Welcome
+              username={sessionStorage.getItem("uname")}
+              serial_key={sessionStorage.getItem("serial_key")}
+            />
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Route>
 
-                <Route exact path="/complaints">
-                    {(sessionStorage.getItem('uname')) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}  /> : <Redirect to="/" /> }
-                </Route>
+        <Route exact path="/videos">
+          {sessionStorage.getItem("uname") ? (
+            <Welcome
+              username={sessionStorage.getItem("uname")}
+              serial_key={sessionStorage.getItem("serial_key")}
+            />
+          ) : (
+            <Redirect to="/" />
+          )}
+        </Route>
 
-                <Route exact path="/videos">
-                    {(sessionStorage.getItem('uname')) ? <Welcome username={sessionStorage.getItem('uname')} serial_key={sessionStorage.getItem('serial_key')}  /> : <Redirect to="/" /> }
-                </Route>
+        <Route exact path="/forgot">
+          {history.action === "PUSH" ? <Forgotpassword /> : <Redirect to="/" />}
+        </Route>
 
-                <Route exact path="/forgot">
-                    {(history.action === "PUSH")? <Forgotpassword/> : <Redirect to="/" /> }
-                </Route>
-                
-                <Route exact path="/activate" component={Activate}></Route> 
+        <Route exact path="/activate" component={Activate}></Route>
 
-                <Route exact path="/reactivate" component={Activate}></Route> 
+        <Route exact path="/reactivate" component={Activate}></Route>
 
-                <Route exact path="/change-password/:id/:token" component={Resetpassword}></Route> 
+        <Route
+          exact
+          path="/change-password/:id/:token"
+          component={Resetpassword}
+        ></Route>
 
-                <Route component={PageNotFound} />
+        <Route component={PageNotFound} />
+      </Switch>
+    </div>
+  );
+};
 
-            </Switch>
-        </div>
-      
-       
-    )
-
-    
-}
-
-export default Router
+export default Router;
